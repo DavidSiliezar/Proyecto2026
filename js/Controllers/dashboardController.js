@@ -1,63 +1,65 @@
+
 document.addEventListener("DOMContentLoaded", async () => {
-    initUIControls();
-    await initGastosChart();
+    inicializarControlesInterfaz();
+    await inicializarGraficoGastos();
 });
 
 
-function initUIControls() {
-    const mobileBtn = document.getElementById('mobile-menu-btn');
-    const desktopBtn = document.querySelector('.menu-toggle');
-    const sidebar = document.getElementById('sidebar');
+function inicializarControlesInterfaz() {
+    const btnMovil = document.getElementById('btn-menu-movil');
+    const btnEscritorio = document.querySelector('.interruptor-menu');
+    const barraLateral = document.getElementById('barra-lateral');
 
-    if (sidebar) {
-        if (mobileBtn) {
-            mobileBtn.addEventListener('click', () => {
-                sidebar.classList.toggle('show');
+    if (barraLateral) {
+        if (btnMovil) {
+            btnMovil.addEventListener('click', () => {
+                barraLateral.classList.toggle('mostrar');
             });
         }
         
-        if (desktopBtn) {
-            desktopBtn.addEventListener('click', () => {
-                sidebar.classList.toggle('collapsed');
+        if (btnEscritorio) {
+            btnEscritorio.addEventListener('click', () => {
+                barraLateral.classList.toggle('colapsado');
             });
         }
     } else {
-        console.warn("Sidebar no encontrada en el DOM.");
+        console.warn("La barra lateral no se encontró en el DOM.");
     }
 }
 
 
-async function initGastosChart() {
-    const canvasElement = document.getElementById('gastosChart');
-    if (!canvasElement) {
-        console.warn("Canvas 'gastosChart' no encontrado.");
+async function inicializarGraficoGastos() {
+    const canvasElemento = document.getElementById('grafico-gastos');
+    if (!canvasElemento) {
+        console.warn("Canvas 'grafico-gastos' no encontrado en el DOM.");
         return;
     }
 
-    const ctx = canvasElement.getContext('2d');
+    const ctx = canvasElemento.getContext('2d');
     
-    const data = await DashboardService.getGastosData();
+    const datosGrafico = await ServicioDashboard.obtenerDatosGastos();
 
-    if (!data) {
+    if (!datosGrafico) {
         console.error("No se pudieron cargar los datos para el gráfico.");
         return; 
     }
 
+   
     new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: data.labels,
+            labels: datosGrafico.etiquetas,
             datasets: [
                 {
                     label: 'Choques',
-                    data: data.choques,
+                    data: datosGrafico.choques,
                     backgroundColor: '#3f7bf5',
                     barPercentage: 0.6,
                     categoryPercentage: 0.4
                 },
                 {
                     label: 'Averías repentinas',
-                    data: data.averias,
+                    data: datosGrafico.averias,
                     backgroundColor: '#1a2240',
                     barPercentage: 0.6,
                     categoryPercentage: 0.4
