@@ -3,525 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vehículos - Fleet Manager Dashboard</title>
+    <title>Vehículos - Fleet Manager</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f6f8fb;
-            margin: 0;
-            overflow: hidden;
-        }
-
-        .top-navbar {
-            background-color: #0b2d85;
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 20px;
-            color: white;
-            position: relative;
-            z-index: 1050;
-        }
-        
-        .top-navbar::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            right: 0;
-            width: 80%;
-            height: 30px;
-            background-color: #0b2d85;
-            border-bottom-right-radius: 100%;
-            border-bottom-left-radius: 20%;
-            z-index: -1;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            font-size: 22px;
-            font-weight: 700;
-            font-style: italic;
-        }
-
-        .logo-icon { margin-right: 10px; font-size: 30px; }
-        .mobile-toggle { background: none; border: none; color: white; font-size: 24px; cursor: pointer; display: none; }
-
-        .main-wrapper {
-            display: flex;
-            height: calc(100vh - 70px);
-            width: 100vw;
-            overflow: hidden;
-        }
-
-        .sidebar {
-            width: 250px;
-            background-color: #1e223c;
-            color: #b0b4c8;
-            display: flex;
-            flex-direction: column;
-            flex-shrink: 0;
-            padding-top: 15px;
-            transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.4s ease;
-            z-index: 1040;
-            overflow-x: hidden;
-        }
-
-        .sidebar.collapsed {
-            width: 80px;
-        }
-
-        .menu-toggle { 
-            padding: 10px 25px; 
-            font-size: 20px; 
-            cursor: pointer; 
-            color: white; 
-            margin-bottom: 10px;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-        }
-
-        .sidebar.collapsed .menu-toggle {
-            padding: 10px 0;
-            justify-content: center;
-        }
-        
-        .nav-link {
-            color: #b0b4c8;
-            padding: 12px 25px;
-            display: flex;
-            align-items: center;
-            font-size: 14px;
-            font-weight: 600;
-            transition: all 0.3s;
-            text-decoration: none;
-            white-space: nowrap;
-        }
-
-        .nav-link i { 
-            width: 30px; 
-            font-size: 18px; 
-            text-align: center;
-            transition: all 0.3s;
-        }
-        
-        .nav-link span {
-            margin-left: 10px;
-            transition: opacity 0.3s ease, width 0.3s ease;
-            opacity: 1;
-        }
-
-        .sidebar.collapsed .nav-link {
-            padding: 12px 0;
-            justify-content: center;
-        }
-
-        .sidebar.collapsed .nav-link i {
-            width: 100%;
-        }
-
-        .sidebar.collapsed .nav-link span {
-            opacity: 0;
-            width: 0;
-            margin-left: 0;
-            display: none;
-        }
-
-        .nav-link:hover { color: white; }
-        .nav-link.active { background-color: #384266; color: white; border-left: 4px solid #0d6efd; }
-        .sidebar.collapsed .nav-link.active { border-left: none; }
-
-        .user-profile {
-            margin-top: auto;
-            padding: 15px 25px;
-            display: flex;
-            align-items: center;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            transition: all 0.3s ease;
-            white-space: nowrap;
-        }
-
-        .sidebar.collapsed .user-profile {
-            padding: 15px 0;
-            justify-content: center;
-        }
-
-        .user-profile img { 
-            width: 35px; 
-            height: 35px; 
-            border-radius: 50%; 
-            margin-right: 10px; 
-            background-color: #fff;
-            transition: margin 0.3s ease;
-        }
-
-        .sidebar.collapsed .user-profile img {
-            margin-right: 0;
-        }
-
-        .user-profile span { 
-            color: white; 
-            font-weight: 600; 
-            font-size: 13px; 
-            transition: opacity 0.3s ease;
-        }
-
-        .sidebar.collapsed .user-profile span {
-            display: none;
-            opacity: 0;
-        }
-
-        .content {
-            flex-grow: 1;
-            padding: 20px 30px;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            transition: all 0.4s ease;
-        }
-
-        .page-header { display: flex; align-items: center; margin-bottom: 15px; }
-        .page-title { font-weight: 700; color: #111; font-size: 24px; margin: 0; width: 200px; }
-
-        .summary-card {
-            background: linear-gradient(135deg, #5c99ff 0%, #3f7bf5 100%);
-            border-radius: 12px;
-            padding: 15px;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 4px 12px rgba(63, 123, 245, 0.2);
-            height: 100%;
-        }
-
-        .icon-circle {
-            background-color: white;
-            color: #3f7bf5;
-            width: 50px; height: 50px;
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 22px; flex-shrink: 0;
-        }
-
-        .card-info { text-align: right; }
-        .card-info .title { font-size: 12px; font-weight: 600; margin-bottom: 0; }
-        .card-info .value { font-size: 28px; font-weight: 700; line-height: 1.1; margin: 2px 0; }
-        .card-info .subtitle { font-size: 11px; opacity: 0.9; }
-
-        .toolbar {
-            background-color: transparent;
-            padding: 15px 0;
-            display: flex; gap: 15px;
-            align-items: flex-end; flex-wrap: wrap;
-        }
-
-        .search-box { flex-grow: 1; max-width: 350px; position: relative; }
-        .search-box i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #888; }
-        .search-box input { padding-left: 40px; border-radius: 20px; border: 1px solid #ddd; height: 40px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
-
-        .filter-group { display: flex; flex-direction: column; }
-        .filter-group label { font-size: 11px; color: #777; margin-bottom: 2px; padding-left: 5px; }
-        .filter-group select { border-radius: 20px; border: 1px solid #ddd; height: 40px; padding: 0 30px 0 15px; min-width: 120px; cursor: pointer; }
-
-        .btn-icon { background: white; border: 1px solid #ddd; height: 40px; width: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #555; cursor: pointer; transition: 0.2s; }
-        .btn-icon:hover { background: #f0f0f0; }
-
-        .btn-primary-custom { background-color: #0d6efd; color: white; border: none; border-radius: 20px; padding: 0 20px; height: 40px; font-weight: 500; display: flex; align-items: center; gap: 8px; transition: 0.2s; box-shadow: 0 4px 10px rgba(13, 110, 253, 0.3); }
-        .btn-primary-custom:hover { background-color: #0b5ed7; color: white; }
-
-        .table-container {
-            flex-grow: 1; min-height: 0; overflow-y: auto; padding-right: 5px;
-        }
-
-        .custom-table { width: 100%; border-collapse: separate; border-spacing: 0 10px; font-size: 13px; }
-        .custom-table thead th { background-color: #2b3252; color: #b0b4c8; padding: 15px 20px; font-weight: 500; position: sticky; top: 0; z-index: 5; }
-        .custom-table thead th:first-child { border-top-left-radius: 8px; border-bottom-left-radius: 8px; }
-        .custom-table thead th:last-child { border-top-right-radius: 8px; border-bottom-right-radius: 8px; text-align: center; }
-
-        .custom-table tbody tr { background-color: white; box-shadow: 0 2px 8px rgba(0,0,0,0.04); transition: all 0.2s; }
-        .custom-table tbody tr.row-selected { background-color: #5c99ff; color: white; box-shadow: 0 4px 12px rgba(92, 153, 255, 0.3); }
-        
-        .custom-table tbody td { padding: 12px 20px; vertical-align: middle; border-top: 1px solid transparent; border-bottom: 1px solid transparent; }
-        .custom-table tbody td:first-child { border-top-left-radius: 8px; border-bottom-left-radius: 8px; font-weight: 600; }
-        .custom-table tbody td:last-child { border-top-right-radius: 8px; border-bottom-right-radius: 8px; text-align: center; }
-
-        .status-badge { padding: 6px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; text-align: center; display: inline-block; min-width: 90px; }
-        .status-operativo { background-color: #5dc232; color: white; }
-        .status-mantenimiento { background-color: #f5a623; color: white; }
-        .status-fuera { background-color: #ff0000; color: white; }
-
-        .action-buttons { display: flex; gap: 8px; justify-content: center; }
-        .action-btn { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: none; font-size: 12px; cursor: pointer; transition: 0.2s; }
-        .btn-view, .btn-edit, .btn-delete { background-color: #e6f0ff; color: #0d6efd; }
-        tr.row-selected .btn-view, tr.row-selected .btn-edit, tr.row-selected .btn-delete { background-color: rgba(255,255,255,0.2); color: white; }
-        .action-btn:hover { transform: scale(1.1); filter: brightness(0.9); }
-
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
-
-        .modal-content-custom {
-            background-color: #f0f2f5;
-            border-radius: 16px;
-            border: none;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-            position: relative; 
-            overflow: hidden; 
-        }
-        .modal-header-custom {
-            display: flex; justify-content: space-between; align-items: center; padding: 20px 30px 10px;
-        }
-        .modal-title-custom { font-weight: 700; font-size: 20px; color: #111; margin: 0; }
-        .btn-close-custom {
-            background: none; border: none; font-size: 28px; color: #0d6efd; 
-            cursor: pointer; line-height: 1; padding: 0; transition: transform 0.2s;
-        }
-        .btn-close-custom:hover { transform: scale(1.1); }
-        .modal-body-custom { padding: 20px 30px; }
-        
-        .inner-card {
-            background-color: white; border-radius: 12px; padding: 20px; 
-            height: 100%; box-shadow: 0 2px 10px rgba(0,0,0,0.03);
-        }
-        .inner-card-title { font-size: 16px; font-weight: 500; margin-bottom: 20px; color: #333; }
-        
-        .custom-input {
-            border-radius: 20px; border: 1px solid #ced4da; padding: 8px 15px; 
-            font-size: 14px; margin-bottom: 12px; box-shadow: inset 0 1px 2px rgba(0,0,0,0.02);
-            transition: border-color 0.2s;
-        }
-        .custom-input:focus {
-            border-color: #0d6efd; box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25); outline: none;
-        }
-        
-        .image-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 15px; }
-        .image-box {
-            background-color: #dbdbdb; aspect-ratio: 1; border-radius: 8px; display: flex; 
-            align-items: center; justify-content: center; font-size: 40px; color: #000; 
-            cursor: pointer; transition: background-color 0.2s;
-        }
-        .image-box:hover { background-color: #c9c9c9; }
-        .image-subtitle { font-size: 14px; color: #333; margin-top: 10px; }
-        
-        .modal-footer-custom { display: flex; justify-content: center; padding: 10px 30px 30px; }
-        .btn-registrar {
-            background-color: #0d6efd; color: white; border: none; border-radius: 25px; 
-            padding: 10px 50px; font-size: 18px; font-weight: 600; transition: all 0.3s; 
-            box-shadow: 0 4px 15px rgba(13, 110, 253, 0.4);
-        }
-        .btn-registrar:hover {
-            background-color: #0b5ed7; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(13, 110, 253, 0.5);
-        }
-
-        .success-overlay {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(200, 204, 211, 0.7);
-            backdrop-filter: blur(2px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 2000;
-        }
-
-        .success-card {
-            background-color: #e5e7eb;
-            padding: 40px 60px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-            width: 80%;
-            max-width: 400px;
-        }
-
-        .success-icon {
-            background-color: #5dc232;
-            color: white;
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
-            margin: 0 auto 20px;
-            box-shadow: 0 4px 10px rgba(93, 194, 50, 0.3);
-        }
-
-        .success-text {
-            font-size: 17px;
-            color: #333;
-            margin-bottom: 30px;
-            font-weight: 500;
-        }
-
-        .btn-aceptar-exito {
-            background-color: #0d6efd;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 10px 0;
-            font-size: 16px;
-            font-weight: 500;
-            width: 100%;
-            transition: background-color 0.2s;
-        }
-
-        .btn-aceptar-exito:hover { background-color: #0b5ed7; }
-
-        @keyframes popIn {
-            0% { transform: scale(0.8); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        @media (max-width: 992px) {
-            .mobile-toggle { display: block; }
-            .sidebar { position: fixed; top: 70px; left: 0; height: calc(100vh - 70px); transform: translateX(-100%); }
-            .sidebar.show { transform: translateX(0); box-shadow: 5px 0 15px rgba(0,0,0,0.3); }
-            .menu-toggle { display: none; }
-            .page-header { flex-direction: column; align-items: flex-start; }
-            .page-title { margin-bottom: 15px; }
-            .toolbar { flex-direction: column; align-items: stretch; }
-            .search-box { max-width: 100%; }
-        }
-
-        @media (max-width: 768px) {
-            .modal-body-custom .row { flex-direction: column; }
-            .inner-card { margin-bottom: 15px; }
-            .image-grid { grid-template-columns: repeat(2, 1fr); }
-            .modal-dialog { margin: 10px; }
-            .success-card { padding: 30px; width: 90%; }
-        }
-    </style>
+    <link rel="stylesheet" href="../styles/stylesVehi.css">
 </head>
 <body>
 
-    <header class="top-navbar" id="app-header">
-        <div class="logo-container">
-            <i class="fa-solid fa-gear logo-icon"></i> Fleet Manager
+    <header class="barra-superior" id="cabecera-app">
+        <div class="contenedor-logo">
+            <i class="fa-solid fa-gear icono-logo"></i> Fleet Manager
         </div>
-        <button class="mobile-toggle" id="mobile-menu-btn">
+        <button class="interruptor-movil" id="btn-menu-movil" aria-label="Abrir menú">
             <i class="fa-solid fa-bars"></i>
         </button>
     </header>
 
-    <div class="main-wrapper" id="app-wrapper">
+    <div class="contenedor-principal" id="envoltorio-app">
         
-        <aside class="sidebar" id="sidebar">
-            <div class="menu-toggle" id="desktop-menu-btn">
+        <aside class="barra-lateral" id="barra-lateral">
+            <button class="interruptor-menu" aria-label="Colapsar menú">
                 <i class="fa-solid fa-bars"></i>
-            </div>
-            <nav class="mt-2 flex-grow-1">
-                <a href="./Dashboard.html" class="nav-link"><i class="fa-solid fa-house"></i> <span>Inicio</span></a>
-                <a href="./Vehiculos.html" class="nav-link active"><i class="fa-solid fa-car-side"></i> <span>Vehículos</span></a>
-                <a href="#" class="nav-link"><i class="fa-solid fa-screwdriver-wrench"></i> <span>Mantenimiento</span></a>
-                <a href="#" class="nav-link"><i class="fa-solid fa-gas-pump"></i> <span>Combustible</span></a>
-                <a href="#" class="nav-link"><i class="fa-solid fa-car-burst"></i> <span>Accidentes</span></a>
-                <a href="#" class="nav-link"><i class="fa-solid fa-file-invoice"></i> <span>Reporte conductor</span></a>
-                <a href="#" class="nav-link"><i class="fa-solid fa-helmet-safety"></i> <span>Trabajadores</span></a>
+            </button>
+            <nav class="mt-2 flex-grow-1" aria-label="Menú principal">
+                <a href="./Dashboard.html" class="enlace-navegacion"><i class="fa-solid fa-house"></i> Inicio</a>
+                <a href="./Vehiculos.html" class="enlace-navegacion activo"><i class="fa-solid fa-car-side"></i> Vehículos</a>
+                <a href="./Mantenimiento.html" class="enlace-navegacion">
+                <i class="fa-solid fa-screwdriver-wrench"></i> Mantenimiento</a>                                                                              
+            <a href="#" class="enlace-navegacion"><i class="fa-solid fa-gas-pump"></i> Combustible</a>
+                <a href="#" class="enlace-navegacion"><i class="fa-solid fa-car-burst"></i> Accidentes</a>
+                <a href="#" class="enlace-navegacion"><i class="fa-solid fa-file-invoice"></i> Reporte conductor</a>
+                <a href="#" class="enlace-navegacion"><i class="fa-solid fa-helmet-safety"></i> Trabajadores</a>
             </nav>
+
             
-            <div class="user-profile">
-                <img src="https://ui-avatars.com/api/?name=Usuario&background=fff&color=333" alt="User">
+            
+            <section class="perfil-usuario">
+                <img src="https://ui-avatars.com/api/?name=Usuario&background=fff&color=333" alt="Avatar del usuario">
                 <span>Nombre de Usuario</span>
-            </div>
+            </section>
         </aside>
 
-        <main class="content">
-            
-            <div class="page-header">
-                <h1 class="page-title">Vehículos</h1>
-                
-                <div class="row g-3 flex-grow-1">
+        <main class="contenido">
+            <header class="cabecera-pagina">
+                <h1 class="titulo-pagina">Vehículos</h1>
+                <section class="row g-3 flex-grow-1" aria-label="Resumen de vehículos">
                     <div class="col-md-4 col-12">
-                        <div class="summary-card">
-                            <div class="icon-circle"><i class="fa-solid fa-car"></i></div>
-                            <div class="card-info">
-                                <div class="title">Vehículos totales</div>
-                                <div class="value">35</div>
-                                <div class="subtitle">Vehículos registrados</div>
+                        <article class="tarjeta-resumen">
+                            <div class="circulo-icono"><i class="fa-solid fa-car"></i></div>
+                            <div class="info-tarjeta">
+                                <h2 class="titulo">Vehículos totales</h2>
+                                <p class="valor">35</p>
+                                <p class="subtitulo">Registrados</p>
                             </div>
-                        </div>
+                        </article>
                     </div>
                     <div class="col-md-4 col-12">
-                        <div class="summary-card">
-                            <div class="icon-circle"><i class="fa-solid fa-wrench"></i></div>
-                            <div class="card-info">
-                                <div class="title">En mantenimiento</div>
-                                <div class="value">4</div>
-                                <div class="subtitle">11.4% del total</div>
+                        <article class="tarjeta-resumen">
+                            <div class="circulo-icono"><i class="fa-solid fa-wrench"></i></div>
+                            <div class="info-tarjeta">
+                                <h2 class="titulo">En mantenimiento</h2>
+                                <p class="valor">4</p>
+                                <p class="subtitulo">11.4% del total</p>
                             </div>
-                        </div>
+                        </article>
                     </div>
                     <div class="col-md-4 col-12">
-                        <div class="summary-card">
-                            <div class="icon-circle"><i class="fa-solid fa-location-dot"></i></div>
-                            <div class="card-info">
-                                <div class="title">Operativos</div>
-                                <div class="value">31</div>
-                                <div class="subtitle">88.5% del total</div>
+                        <article class="tarjeta-resumen">
+                            <div class="circulo-icono"><i class="fa-solid fa-location-dot"></i></div>
+                            <div class="info-tarjeta">
+                                <h2 class="titulo">Operativos</h2>
+                                <p class="valor">31</p>
+                                <p class="subtitulo">88.5% del total</p>
                             </div>
-                        </div>
+                        </article>
                     </div>
-                </div>
-            </div>
+                </section>
+            </header>
 
-            <div class="toolbar">
-                <div class="search-box">
+            <section class="barra-herramientas" aria-label="Herramientas de filtrado y búsqueda">
+                <div class="caja-busqueda">
                     <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" class="form-control" placeholder="Buscar...">
+                    <input type="text" class="form-control" placeholder="Buscar..." aria-label="Buscar vehículo">
                 </div>
-                
-                <button class="btn-icon" title="Limpiar filtros">
+                <button class="btn-icono" title="Limpiar filtros" aria-label="Limpiar filtros">
                     <i class="fa-regular fa-trash-can"></i>
                 </button>
-
-                <div class="filter-group">
+                <div class="grupo-filtro">
                     <label>Estado</label>
-                    <select class="form-select">
+                    <select class="form-select" aria-label="Filtrar por estado">
                         <option>Todos</option>
                         <option>Operativo</option>
                         <option>Mantenimiento</option>
                     </select>
                 </div>
-
-                <div class="filter-group">
+                <div class="grupo-filtro">
                     <label>Kilometraje</label>
-                    <select class="form-select">
+                    <select class="form-select" aria-label="Filtrar por kilometraje">
                         <option>Todos</option>
                         <option>Menor a 10k</option>
                         <option>10k - 50k</option>
                     </select>
                 </div>
-
-                <div class="filter-group">
+                <div class="grupo-filtro">
                     <label>Marca</label>
-                    <select class="form-select">
+                    <select class="form-select" aria-label="Filtrar por marca">
                         <option>Todos</option>
                         <option>Toyota</option>
                         <option>Nissan</option>
                     </select>
                 </div>
-
                 <div class="ms-auto">
-                    <button class="btn-primary-custom" id="btnAbrirModalVehiculo">
+                    <button class="btn-primario-personalizado" id="btn-abrir-modal-vehiculo">
                         + Nuevo Vehículo
                     </button>
                 </div>
-            </div>
+            </section>
 
-            <div class="table-container">
-                <table class="custom-table">
+            <section class="contenedor-tabla" aria-label="Tabla de vehículos">
+                <table class="tabla-personalizada">
                     <thead>
                         <tr>
                             <th>Matricula</th>
@@ -532,223 +135,107 @@
                             <th>Numero VIN</th>
                             <th>Conductor</th>
                             <th class="text-center">Estado</th>
-                            <th></th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>21312-23P</td>
+                            <td>ABC-123</td>
                             <td>Toyota</td>
                             <td>Hilux</td>
-                            <td>2008</td>
-                            <td>5,000km</td>
-                            <td>1HGCM82633A123456</td>
-                            <td>Noé David</td>
-                            <td class="text-center"><span class="status-badge status-operativo">Operativo</span></td>
+                            <td>2022</td>
+                            <td>45,000 km</td>
+                            <td>JT123456789</td>
+                            <td>Juan Pérez</td>
+                            <td class="text-center"><span class="insignia-estado estado-operativo">Operativo</span></td>
                             <td>
-                                <div class="action-buttons">
-                                    <button class="action-btn btn-view"><i class="fa-regular fa-eye"></i></button>
-                                    <button class="action-btn btn-edit"><i class="fa-solid fa-pen-clip"></i></button>
-                                    <button class="action-btn btn-delete"><i class="fa-regular fa-trash-can"></i></button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="row-selected">
-                            <td>21312-23P</td>
-                            <td>Toyota</td>
-                            <td>Hilux</td>
-                            <td>2008</td>
-                            <td>5,000km</td>
-                            <td>1HGCM82633A123456</td>
-                            <td>Noé David</td>
-                            <td class="text-center"><span class="status-badge status-mantenimiento">Mantenimiento</span></td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="action-btn btn-view"><i class="fa-regular fa-eye"></i></button>
-                                    <button class="action-btn btn-edit"><i class="fa-solid fa-pen-clip"></i></button>
-                                    <button class="action-btn btn-delete"><i class="fa-regular fa-trash-can"></i></button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>21312-23P</td>
-                            <td>Toyota</td>
-                            <td>Hilux</td>
-                            <td>2008</td>
-                            <td>5,000km</td>
-                            <td>1HGCM82633A123456</td>
-                            <td>Noé David</td>
-                            <td class="text-center"><span class="status-badge status-operativo">Operativo</span></td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="action-btn btn-view"><i class="fa-regular fa-eye"></i></button>
-                                    <button class="action-btn btn-edit"><i class="fa-solid fa-pen-clip"></i></button>
-                                    <button class="action-btn btn-delete"><i class="fa-regular fa-trash-can"></i></button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>21312-23P</td>
-                            <td>Toyota</td>
-                            <td>Hilux</td>
-                            <td>2008</td>
-                            <td>5,000km</td>
-                            <td>1HGCM82633A123456</td>
-                            <td>Noé David</td>
-                            <td class="text-center"><span class="status-badge status-fuera">Fuera de servicio</span></td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="action-btn btn-view"><i class="fa-regular fa-eye"></i></button>
-                                    <button class="action-btn btn-edit"><i class="fa-solid fa-pen-clip"></i></button>
-                                    <button class="action-btn btn-delete"><i class="fa-regular fa-trash-can"></i></button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>21312-23P</td>
-                            <td>Toyota</td>
-                            <td>Hilux</td>
-                            <td>2008</td>
-                            <td>5,000km</td>
-                            <td>1HGCM82633A123456</td>
-                            <td>Noé David</td>
-                            <td class="text-center"><span class="status-badge status-operativo">Operativo</span></td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="action-btn btn-view"><i class="fa-regular fa-eye"></i></button>
-                                    <button class="action-btn btn-edit"><i class="fa-solid fa-pen-clip"></i></button>
-                                    <button class="action-btn btn-delete"><i class="fa-regular fa-trash-can"></i></button>
+                                <div class="botones-accion">
+                                    <button class="btn-accion btn-ver" title="Ver detalle"><i class="fa-regular fa-eye"></i></button>
+                                    <button class="btn-accion btn-editar" title="Editar"><i class="fa-solid fa-pen"></i></button>
+                                    <button class="btn-accion btn-eliminar" title="Eliminar"><i class="fa-regular fa-trash-can"></i></button>
                                 </div>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-            </div>
+            </section>
         </main>
     </div>
 
-    <div class="modal fade" id="vehiculoModal" tabindex="-1" aria-labelledby="vehiculoModalLabel" aria-hidden="true" data-bs-backdrop="static">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content modal-content-custom">
+    <div class="modal fade" id="modal-vehiculo" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content contenido-modal-personalizado">
                 
-                <div id="successOverlay" class="success-overlay d-none">
-                    <div class="success-card">
-                        <div class="success-icon">
-                            <i class="fa-solid fa-check"></i>
-                        </div>
-                        <p class="success-text">Vehiculo registrado exitosamente</p>
-                        <button type="button" class="btn-aceptar-exito" id="btnAceptarExito">Aceptar</button>
-                    </div>
-                </div>
-                <div class="modal-header-custom">
-                    <h2 class="modal-title-custom" id="vehiculoModalLabel">Agregar un nuevo Vehículo</h2>
-                    <button type="button" class="btn-close-custom" data-bs-dismiss="modal" aria-label="Close">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                </div>
-
-                <div class="modal-body modal-body-custom">
-                    <div class="row g-4">
-                        
-                        <div class="col-md-5">
-                            <div class="inner-card">
-                                <h3 class="inner-card-title">Registrar un nuevo vehiculo</h3>
-                                
-                                <form id="formNuevoVehiculo">
-                                    <input type="text" class="form-control custom-input" placeholder="Matricula">
-                                    <input type="text" class="form-control custom-input" placeholder="Marca">
-                                    <input type="text" class="form-control custom-input" placeholder="Modelo">
-                                    <input type="text" class="form-control custom-input" placeholder="Año">
-                                    <input type="text" class="form-control custom-input" placeholder="Kilometraje">
-                                    <input type="text" class="form-control custom-input" placeholder="Numero VIN">
-                                    <input type="text" class="form-control custom-input" placeholder="Color">
-                                </form>
-                            </div>
-                        </div>
-
-                        <div class="col-md-7">
-                            <div class="inner-card d-flex flex-column justify-content-between">
-                                <div class="image-grid">
-                                    <div class="image-box"></div>
-                                    <div class="image-box"><i class="fa-solid fa-camera"></i></div>
-                                    <div class="image-box"><i class="fa-solid fa-camera"></i></div>
-                                    <div class="image-box"><i class="fa-solid fa-camera"></i></div>
-                                    <div class="image-box"><i class="fa-solid fa-camera"></i></div>
-                                    <div class="image-box"><i class="fa-solid fa-camera"></i></div>
-                                </div>
-                                <div class="image-subtitle">
-                                    Subir Imagenes del Vehículo
-                                </div>
-                            </div>
-                        </div>
-
+                <div class="capa-exito d-none" id="capa-exito">
+                    <div class="tarjeta-exito">
+                        <div class="icono-exito"><i class="fa-solid fa-check"></i></div>
+                        <h3 class="texto-exito">Vehículo Registrado Exitosamente</h3>
+                        <button class="btn-aceptar-exito" id="btn-aceptar-exito">Aceptar</button>
                     </div>
                 </div>
 
-                <div class="modal-footer-custom">
-                    <button type="button" class="btn-registrar" id="btnSubmitRegistrar">Registrar</button>
-                </div>
-
+                <header class="cabecera-modal-personalizada">
+                    <h2 class="titulo-modal-personalizado">Nuevo vehículo</h2>
+                    <button type="button" class="btn-cerrar-personalizado" data-bs-dismiss="modal" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
+                </header>
+                
+                <form id="formulario-nuevo-vehiculo">
+                    <div class="modal-body cuerpo-modal-personalizado">
+                        <div class="row g-4">
+                            <div class="col-lg-6">
+                                <article class="tarjeta-interna">
+                                    <h3 class="titulo-tarjeta-interna">Datos del vehículo</h3>
+                                    <input type="text" class="form-control entrada-personalizada w-100" placeholder="Matrícula" required>
+                                    <input type="text" class="form-control entrada-personalizada w-100" placeholder="Marca" required>
+                                    <input type="text" class="form-control entrada-personalizada w-100" placeholder="Modelo" required>
+                                    <input type="number" class="form-control entrada-personalizada w-100" placeholder="Año" required>
+                                    <input type="number" class="form-control entrada-personalizada w-100" placeholder="Kilometraje" required>
+                                    <input type="text" class="form-control entrada-personalizada w-100" placeholder="Número VIN" required>
+                                    <input type="text" class="form-control entrada-personalizada w-100" placeholder="Estado del vehículo">
+                                    <input type="text" class="form-control entrada-personalizada w-100" placeholder="Conductor asignado">
+                                </article>
+                            </div>
+                            
+                            <div class="col-lg-6">
+                                <article class="tarjeta-interna">
+                                    <h3 class="titulo-tarjeta-interna">Fotografías</h3>
+                                    <div class="cuadricula-imagenes">
+                                        <div class="text-center">
+                                            <div class="caja-imagen"><i class="fa-solid fa-camera"></i></div>
+                                            <div class="subtitulo-imagen">Frontal</div>
+                                        </div>
+                                        <div class="text-center">
+                                            <div class="caja-imagen"><i class="fa-solid fa-camera"></i></div>
+                                            <div class="subtitulo-imagen">Trasera</div>
+                                        </div>
+                                        <div class="text-center">
+                                            <div class="caja-imagen"><i class="fa-solid fa-camera"></i></div>
+                                            <div class="subtitulo-imagen">Izquierda</div>
+                                        </div>
+                                        <div class="text-center">
+                                            <div class="caja-imagen"><i class="fa-solid fa-camera"></i></div>
+                                            <div class="subtitulo-imagen">Derecha</div>
+                                        </div>
+                                        <div class="text-center">
+                                            <div class="caja-imagen"><i class="fa-solid fa-camera"></i></div>
+                                            <div class="subtitulo-imagen">Interior</div>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <footer class="pie-modal-personalizado">
+                        <button type="button" class="btn-registrar" id="btn-enviar-registro">Registrar</button>
+                    </footer>
+                </form>
             </div>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const appWrapper = document.getElementById('app-wrapper');
-            const appHeader = document.getElementById('app-header');
-            
-            appWrapper.style.opacity = '0';
-            appHeader.style.opacity = '0';
-            void appWrapper.offsetWidth;
-            appWrapper.style.transition = 'opacity 1.2s ease-in-out';
-            appHeader.style.transition = 'opacity 1.2s ease-in-out';
-            
-            setTimeout(() => {
-                appWrapper.style.opacity = '1';
-                appHeader.style.opacity = '1';
-            }, 50);
-
-            const mobileBtn = document.getElementById('mobile-menu-btn');
-            const desktopBtn = document.getElementById('desktop-menu-btn');
-            const sidebar = document.getElementById('sidebar');
-
-            mobileBtn.addEventListener('click', () => {
-                sidebar.classList.toggle('show');
-            });
-
-            desktopBtn.addEventListener('click', () => {
-                sidebar.classList.toggle('collapsed');
-            });
-
-            const modalElement = document.getElementById('vehiculoModal');
-            const vehiculoModal = new bootstrap.Modal(modalElement, {
-                keyboard: false,
-                backdrop: 'static' 
-            });
-
-            const btnAbrirModal = document.getElementById('btnAbrirModalVehiculo');
-            const btnSubmitRegistrar = document.getElementById('btnSubmitRegistrar');
-            const successOverlay = document.getElementById('successOverlay');
-            const btnAceptarExito = document.getElementById('btnAceptarExito');
-            const formNuevoVehiculo = document.getElementById('formNuevoVehiculo');
-            
-            btnAbrirModal.addEventListener('click', () => {
-                vehiculoModal.show();
-            });
-
-            btnSubmitRegistrar.addEventListener('click', () => {
-                successOverlay.classList.remove('d-none');
-            });
-
-            btnAceptarExito.addEventListener('click', () => {
-                successOverlay.classList.add('d-none');
-                vehiculoModal.hide();
-                formNuevoVehiculo.reset();
-            });
-        });
-    </script>
+    <script src="../js/Controllers/vehiculosControllers.js"></script>
+    <script src="../js/Services/vehiculosServices.js"></script>
 </body>
 </html>
