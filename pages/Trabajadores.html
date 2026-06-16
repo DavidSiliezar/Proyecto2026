@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trabajadores - Panel de Flota</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/stylesTrabajadores.css">
+</head>
+<body>
+
+    <header class="barra-superior" id="cabecera-app">
+        <div class="contenedor-logo">
+            <i class="fa-solid fa-gear icono-logo"></i> Panel de Flota
+        </div>
+        <button class="interruptor-movil" id="btn-menu-movil" aria-label="Abrir menú">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </header>
+
+    <div class="contenedor-principal" id="envoltorio-app">
+        
+        <aside class="barra-lateral" id="barra-lateral">
+            <button class="interruptor-menu" aria-label="Colapsar menú">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <nav class="mt-2 flex-grow-1" aria-label="Menú principal">
+                <a href="./Dashboard.html" class="enlace-navegacion"><i class="fa-solid fa-house"></i> Inicio</a>
+                <a href="./Vehiculos.html" class="enlace-navegacion"><i class="fa-solid fa-car-side"></i> Vehículos</a>
+                <a href="./Mantenimiento.html" class="enlace-navegacion"><i class="fa-solid fa-screwdriver-wrench"></i> Mantenimiento</a>
+                <a href="#" class="enlace-navegacion"><i class="fa-solid fa-gas-pump"></i> Combustible</a>
+                <a href="#" class="enlace-navegacion"><i class="fa-solid fa-car-burst"></i> Accidentes</a>
+                <a href="#" class="enlace-navegacion"><i class="fa-solid fa-file-invoice"></i> Reporte conductor</a>
+                <a href="./Trabajadores.html" class="enlace-navegacion activo"><i class="fa-solid fa-helmet-safety"></i> Trabajadores</a>
+            </nav>
+            
+            <section class="perfil-usuario">
+                <img src="https://ui-avatars.com/api/?name=Usuario&background=fff&color=333" alt="Avatar del usuario">
+                <span>Nombre de Usuario</span>
+            </section>
+        </aside>
+
+        <main class="contenido">
+            <header class="cabecera-pagina">
+                <h1 class="titulo-pagina">Trabajadores</h1>
+            </header>
+
+            <section class="barra-herramientas" aria-label="Herramientas de búsqueda">
+                <div class="caja-busqueda" style="max-width: 600px; width: 100%;">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" class="form-control" id="input-buscar-trabajador" placeholder="Buscar trabajador..." aria-label="Buscar trabajador">
+                </div>
+            </section>
+
+            <div class="row flex-grow-1 overflow-hidden h-100 mt-3">
+                <div class="col-xl-8 col-lg-7 h-100 d-flex flex-column mb-4">
+                    <section class="contenedor-tabla-recientes flex-grow-1" aria-label="Lista de trabajadores">
+                        <div class="table-responsive h-100">
+                            <table class="tabla-personalizada">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Apellido</th>
+                                        <th>Correo Electrónico</th>
+                                        <th class="text-center">DUI</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="fila-interactiva">
+                                        <td class="fw-semibold">Josue Nahum</td>
+                                        <td>Rodriguez Lopez</td>
+                                        <td class="text-muted">example@gmail.com</td>
+                                        <td class="text-center text-muted">00000000-1</td>
+                                    </tr>
+                                    <tr class="fila-interactiva">
+                                        <td class="fw-semibold">Rodrigo Alejandro</td>
+                                        <td>Tisnado Corpeño</td>
+                                        <td class="text-muted">example@gmail.com</td>
+                                        <td class="text-center text-muted">00000000-9</td>
+                                    </tr>
+                                    <tr class="fila-interactiva">
+                                        <td class="fw-semibold">Roberto Carlos</td>
+                                        <td>Santos Tisnado</td>
+                                        <td class="text-muted">example@gmail.com</td>
+                                        <td class="text-center text-muted">00000000-4</td>
+                                    </tr>
+                                    <tr class="fila-interactiva">
+                                        <td class="fw-semibold">Arturo Alejandro</td>
+                                        <td>Valencia Ramos</td>
+                                        <td class="text-muted">example@gmail.com</td>
+                                        <td class="text-center text-muted">00000000-9</td>
+                                    </tr>
+                                    <tr class="fila-interactiva">
+                                        <td class="fw-semibold">Roberto Carlos</td>
+                                        <td>Santos Tisnado</td>
+                                        <td class="text-muted">example@gmail.com</td>
+                                        <td class="text-center text-muted">00000000-4</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="col-xl-4 col-lg-5 px-lg-4 d-flex flex-column h-100">
+                    <article class="tarjeta-foto-trabajador mb-4">
+                        <div class="caja-foto-perfil">
+                            <i class="fa-solid fa-camera icono-camara"></i>
+                        </div>
+                    </article>
+                    
+                    <button class="btn-primario-personalizado w-100 d-flex justify-content-center" id="btn-registrar-trabajador">
+                        Registrar nuevo trabajador
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/Controllers/trabajadoresControllers.js"></script>
+    <script src="../js/Services/trabajadores.js"></script>
+</body>
+</html>
