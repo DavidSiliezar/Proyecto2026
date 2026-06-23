@@ -31,11 +31,4 @@ function inicializarControlesInterfaz() {
             });
         }
     }
-    
-    const botonesAccion = document.querySelectorAll('.boton-accion');
-    botonesAccion.forEach(boton => {
-        boton.addEventListener('click', (e) => {
-            e.stopPropagation();
-        });
-    });
 }

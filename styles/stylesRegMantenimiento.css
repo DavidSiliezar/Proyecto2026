@@ -57,24 +57,53 @@ body {
 .barra-lateral.colapsado .item-sub-menu, .barra-lateral.colapsado .icono-desplegable { display: none; }
 .main-content.expandida { margin-left: 80px; }
 
-.fila-registro {
-    transition: all 0.2s ease;
+.input-gris {
+    background-color: #f3f4f6 !important;
+    border: 1px solid #e5e7eb;
+}
+.custom-input {
+    border-radius: 12px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    font-size: 14px;
+    color: #374151;
+    font-weight: 500;
+}
+.custom-input:focus {
+    box-shadow: none;
+    border-color: #0066FF;
+    background-color: #ffffff !important;
 }
 
-.fila-registro:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.08) !important;
+.input-con-icono .icono-input {
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    z-index: 10;
 }
 
-.boton-accion {
-    transition: all 0.2s ease;
+select.appearance-none {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1em;
 }
 
-.boton-accion:hover {
-    background-color: #0d6efd !important;
-    color: white !important;
-    border-color: #0d6efd !important;
+.upload-area {
+    border: 2px dashed #d1d5db;
+    border-radius: 16px;
+    background-color: #f9fafb;
+    transition: border-color 0.3s, background-color 0.3s;
 }
+.upload-area.dragover {
+    border-color: #0066FF;
+    background-color: #eef2ff;
+}
+.cursor-pointer { cursor: pointer; }
 
 @media (max-width: 992px) {
     .interruptor-movil { display: block; }
@@ -83,13 +112,4 @@ body {
     .interruptor-menu { display: none; }
     .main-content { margin-left: 0; margin-top: 120px; padding: 15px; }
     .main-content.expandida { margin-left: 0; }
-}
-
-@media (max-width: 1200px) {
-    .main-content .d-flex.flex-wrap > div.table-responsive {
-        overflow-x: auto;
-    }
-    .main-content .d-flex.flex-wrap > div.table-responsive > div {
-        min-width: 900px;
-    }
 }

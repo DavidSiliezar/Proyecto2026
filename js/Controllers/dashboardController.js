@@ -1,14 +1,13 @@
-
 document.addEventListener("DOMContentLoaded", async () => {
     inicializarControlesInterfaz();
     await inicializarGraficoGastos();
 });
 
-
 function inicializarControlesInterfaz() {
     const btnMovil = document.getElementById('btn-menu-movil');
-    const btnEscritorio = document.querySelector('.interruptor-menu');
+    const btnEscritorio = document.getElementById('btn-escritorio');
     const barraLateral = document.getElementById('barra-lateral');
+    const contenidoPrincipal = document.getElementById('contenido-principal');
 
     if (barraLateral) {
         if (btnMovil) {
@@ -20,13 +19,15 @@ function inicializarControlesInterfaz() {
         if (btnEscritorio) {
             btnEscritorio.addEventListener('click', () => {
                 barraLateral.classList.toggle('colapsado');
+                if (contenidoPrincipal) {
+                    contenidoPrincipal.classList.toggle('expandida');
+                }
             });
         }
     } else {
         console.warn("La barra lateral no se encontró en el DOM.");
     }
 }
-
 
 async function inicializarGraficoGastos() {
     const canvasElemento = document.getElementById('grafico-gastos');
@@ -36,7 +37,6 @@ async function inicializarGraficoGastos() {
     }
 
     const ctx = canvasElemento.getContext('2d');
-    
     const datosGrafico = await ServicioDashboard.obtenerDatosGastos();
 
     if (!datosGrafico) {
@@ -44,7 +44,6 @@ async function inicializarGraficoGastos() {
         return; 
     }
 
-   
     new Chart(ctx, {
         type: 'bar',
         data: {

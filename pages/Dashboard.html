@@ -8,110 +8,104 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="../styles/stylesDash.css">
 </head>
 <body>
 
-    <header class="barra-superior" id="cabecera-app">
-        <div class="contenedor-logo">
-            <i class="fa-solid fa-gear icono-logo"></i> Fleet Manager
-        </div>
+    <header class="barra-superior">
+        <img src="../img/group3.svg" alt="Fleet Manager Logo" class="logo-principal">
         <button class="interruptor-movil" id="btn-menu-movil" aria-label="Abrir menú">
             <i class="fa-solid fa-bars"></i>
         </button>
     </header>
 
-    <div class="contenedor-principal" id="envoltorio-app">
+    <aside class="barra-lateral" id="barra-lateral">
+        <div class="interruptor-menu" id="btn-escritorio">
+            <i class="fa-solid fa-bars"></i>
+        </div>
         
-        <aside class="barra-lateral" id="barra-lateral">
-            <button class="interruptor-menu" aria-label="Colapsar menú">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-            <nav class="mt-2 flex-grow-1" aria-label="Menú principal">
-                <a href="./Dashboard.html" class="enlace-navegacion activo"><i class="fa-solid fa-house"></i> Inicio</a>
-                <a href="./Vehiculos.html" class="enlace-navegacion"><i class="fa-solid fa-car-side"></i> Vehículos</a>
-                <a href="./Mantenimiento.html" class="enlace-navegacion"><i class="fa-solid fa-screwdriver-wrench"></i> Mantenimiento</a>
-                <a href="./Combustible.html" class="enlace-navegacion"><i class="fa-solid fa-gas-pump"></i> Combustible</a>
-                <a href="#" class="enlace-navegacion"><i class="fa-solid fa-car-burst"></i> Accidentes</a>
-                <a href="#" class="enlace-navegacion"><i class="fa-solid fa-file-invoice"></i> Reporte conductor</a>
-                <a href="./Trabajadores.html" class="enlace-navegacion"><i class="fa-solid fa-helmet-safety"></i> Trabajadores</a>
-            </nav>
-            
-            <section class="perfil-usuario">
-                <img src="https://ui-avatars.com/api/?name=Usuario&background=fff&color=333" alt="Avatar del usuario">
-                <span>Nombre de Usuario</span>
-            </section>
-        </aside>
+        <div class="mt-4">
+            <a href="./Dashboard.html" class="item-menu activo"><i class="fa-solid fa-house"></i> Inicio</a>
+            <a href="./Vehiculos.html" class="item-menu"><i class="fa-solid fa-car-side"></i> Vehículos</a>
+            <a href="./Mantenimiento.html" class="item-menu"><i class="fa-solid fa-screwdriver-wrench"></i> Mantenimiento</a>
+            <a href="./Combustible.html" class="item-menu"><i class="fa-solid fa-gas-pump"></i> Combustible</a>
+            <a href="./Accidentes.html" class="item-menu"><i class="fa-solid fa-car-burst"></i> Accidentes</a>
+            <a href="./ReporteConductor.html" class="item-menu"><i class="fa-regular fa-file-lines"></i> Reporte conductor</a>
+            <a href="./Trabajadores.html" class="item-menu"><i class="fa-solid fa-helmet-safety"></i> Trabajadores</a>
+        </div>
 
-        <main class="contenido">
-            <header>
-                <h1 class="titulo-pagina">¡Bienvenido de Nuevo!</h1>
-                <p class="subtitulo-pagina">Aquí tienes un resumen general de la flota.</p>
-            </header>
+        <a href="./PerfilUsuario.html" class="perfil-usuario text-decoration-none">
+            <i class="fa-solid fa-circle-user fs-2 me-3"></i>
+            <span class="nombre-usuario">Nombre de Usuario</span>
+        </a>
+    </aside>
 
-            <section class="row g-3" aria-label="Indicadores principales">
-                <div class="col-6 col-lg-3">
-                    <article class="tarjeta-resumen">
-                        <div class="circulo-icono"><i class="fa-solid fa-car"></i></div>
-                        <div class="info-tarjeta">
-                            <h2 class="titulo">Vehículos totales</h2>
-                            <p class="valor">35</p>
-                            <p class="subtitulo">Registrados</p>
-                        </div>
-                    </article>
-                </div>
-                <div class="col-6 col-lg-3">
-                    <article class="tarjeta-resumen">
-                        <div class="circulo-icono"><i class="fa-solid fa-wrench"></i></div>
-                        <div class="info-tarjeta">
-                            <h2 class="titulo">En mantenimiento</h2>
-                            <p class="valor">4</p>
-                            <p class="subtitulo">11.4% del total</p>
-                        </div>
-                    </article>
-                </div>
-                <div class="col-6 col-lg-3">
-                    <article class="tarjeta-resumen">
-                        <div class="circulo-icono"><i class="fa-solid fa-location-dot"></i></div>
-                        <div class="info-tarjeta">
-                            <h2 class="titulo">Operativos</h2>
-                            <p class="valor">31</p>
-                            <p class="subtitulo">88.5% del total</p>
-                        </div>
-                    </article>
-                </div>
-                <div class="col-6 col-lg-3">
-                    <article class="tarjeta-resumen">
-                        <div class="circulo-icono"><i class="fa-solid fa-dollar-sign"></i></div>
-                        <div class="info-tarjeta">
-                            <h2 class="titulo">Gasto mantenimientos</h2>
-                            <p class="valor">10K</p>
-                            <p class="subtitulo">Este mes</p>
-                        </div>
-                    </article>
-                </div>
-            </section>
+    <main class="main-content" id="contenido-principal">
+        <header>
+            <h1 class="titulo-pagina">¡Bienvenido de Nuevo!</h1>
+            <p class="subtitulo-pagina">Aquí tienes un resumen general de la flota.</p>
+        </header>
 
-            <section class="contenedor-grafico" aria-label="Gráfico de gastos">
-                <header class="cabecera-grafico">
-                    <h2 class="titulo-grafico m-0">Gastos</h2>
-                    <div class="leyenda-personalizada">
-                        <div class="elemento-leyenda">Choques <div class="color-leyenda" style="background-color: #3f7bf5;"></div></div>
-                        <div class="elemento-leyenda">Averías repentinas <div class="color-leyenda" style="background-color: #1a2240;"></div></div>
+        <section class="row g-3" aria-label="Indicadores principales">
+            <div class="col-6 col-lg-3">
+                <article class="tarjeta-resumen">
+                    <div class="circulo-icono"><i class="fa-solid fa-car"></i></div>
+                    <div class="info-tarjeta">
+                        <h2 class="titulo">Vehículos totales</h2>
+                        <p class="valor">35</p>
+                        <p class="subtitulo">Registrados</p>
                     </div>
-                </header>
-                <div class="contenedor-canvas">
-                    <canvas id="grafico-gastos"></canvas>
+                </article>
+            </div>
+            <div class="col-6 col-lg-3">
+                <article class="tarjeta-resumen">
+                    <div class="circulo-icono"><i class="fa-solid fa-wrench"></i></div>
+                    <div class="info-tarjeta">
+                        <h2 class="titulo">En mantenimiento</h2>
+                        <p class="valor">4</p>
+                        <p class="subtitulo">11.4% del total</p>
+                    </div>
+                </article>
+            </div>
+            <div class="col-6 col-lg-3">
+                <article class="tarjeta-resumen">
+                    <div class="circulo-icono"><i class="fa-solid fa-location-dot"></i></div>
+                    <div class="info-tarjeta">
+                        <h2 class="titulo">Operativos</h2>
+                        <p class="valor">31</p>
+                        <p class="subtitulo">88.5% del total</p>
+                    </div>
+                </article>
+            </div>
+            <div class="col-6 col-lg-3">
+                <article class="tarjeta-resumen">
+                    <div class="circulo-icono"><i class="fa-solid fa-dollar-sign"></i></div>
+                    <div class="info-tarjeta">
+                        <h2 class="titulo">Gasto mantenimientos</h2>
+                        <p class="valor">10K</p>
+                        <p class="subtitulo">Este mes</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="contenedor-grafico" aria-label="Gráfico de gastos">
+            <header class="cabecera-grafico">
+                <h2 class="titulo-grafico m-0">Gastos</h2>
+                <div class="leyenda-personalizada">
+                    <div class="elemento-leyenda">Choques <div class="color-leyenda" style="background-color: #3f7bf5;"></div></div>
+                    <div class="elemento-leyenda">Averías repentinas <div class="color-leyenda" style="background-color: #1a2240;"></div></div>
                 </div>
-            </section>
-        </main>
-    </div>
+            </header>
+            <div class="contenedor-canvas">
+                <canvas id="grafico-gastos"></canvas>
+            </div>
+        </section>
+    </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
-    <script src="../js/Controllers/dashboardController.js"></script>
     <script src="../js/Services/dashboardService.js"></script>
+    <script src="../js/Controllers/dashboardController.js"></script>
 </body>
 </html>

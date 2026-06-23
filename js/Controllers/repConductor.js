@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", async () => {
     inicializarControlesInterfaz();
-    await renderizarCargas();
+    await renderizarReportes();
 });
 
 function inicializarControlesInterfaz() {
@@ -34,41 +34,28 @@ function inicializarControlesInterfaz() {
     }
 }
 
-async function renderizarCargas() {
-    const contenedor = document.getElementById('lista-cargas');
+async function renderizarReportes() {
+    const contenedor = document.getElementById('contenedor-reportes');
     if (!contenedor) return;
-    
-    const cargas = await ServicioCombustible.obtenerCargasRecientes();
+
+    const reportes = await ServicioReportes.obtenerReportes();
     let htmlContenido = '';
 
-    cargas.forEach(carga => {
+    reportes.forEach(reporte => {
+        const claseEstado = reporte.estado === 'revision' ? 'estado-revision' : 'estado-atendido';
+        const textoEstado = reporte.estado === 'revision' ? 'En revisión' : 'Atendido';
+
         htmlContenido += `
-            <article class="tarjeta-carga">
-                <div class="icono-gas">
-                    <i class="fa-solid fa-gas-pump"></i>
+            <article class="tarjeta-reporte">
+                <img src="${reporte.img}" alt="Fotografía del reporte" class="imagen-reporte" onerror="this.src='../img/placeholder.jpg'">
+                <div class="detalles-reporte">
+                    <span class="insignia-estado ${claseEstado}">${textoEstado}</span>
+                    <h3 class="numero-reporte">${reporte.id}</h3>
+                    <p class="fecha-hora"><i class="fa-regular fa-calendar"></i> ${reporte.fecha}</p>
+                    <p class="ubicacion"><i class="fa-solid fa-location-dot"></i> ${reporte.ubicacion}</p>
                 </div>
-                
-                <div class="info-carga-principal">
-                    <div class="texto-vehiculo">${carga.vehiculo}</div>
-                    <div class="detalle-item">
-                        <i class="fa-regular fa-circle-user"></i> ${carga.conductor}
-                    </div>
-                    <div class="detalle-item">
-                        <i class="fa-solid fa-id-card"></i> ${carga.placa}
-                    </div>
-                </div>
-
-                <div class="info-carga-secundaria">
-                    <div class="detalle-item mt-sm-4">
-                        <i class="fa-regular fa-calendar"></i> ${carga.fecha}
-                    </div>
-                    <div class="detalle-item">
-                        <i class="fa-solid fa-droplet"></i> ${carga.litros}
-                    </div>
-                </div>
-
-                <div class="info-carga-precio">
-                    <span class="texto-precio">${carga.costo}</span>
+                <div class="icono-flecha">
+                    <i class="fa-solid fa-chevron-right"></i>
                 </div>
             </article>
         `;

@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     inicializarControlesInterfaz();
-    inicializarEventosVehiculos();
+    inicializarEventosAccidentes();
 });
 
 function inicializarControlesInterfaz() {
@@ -19,32 +19,39 @@ function inicializarControlesInterfaz() {
         if (btnEscritorio) {
             btnEscritorio.addEventListener('click', () => {
                 barraLateral.classList.toggle('colapsado');
+                
                 if (contenidoPrincipal) {
                     contenidoPrincipal.classList.toggle('expandida');
                 }
+
+                const submenus = document.querySelectorAll('.collapse.show');
+                submenus.forEach(submenu => {
+                    const bsCollapse = new bootstrap.Collapse(submenu, { toggle: false });
+                    bsCollapse.hide();
+                });
             });
         }
     }
 }
 
-function inicializarEventosVehiculos() {
-    const elementoModal = document.getElementById('modal-vehiculo');
+function inicializarEventosAccidentes() {
+    const elementoModal = document.getElementById('modal-accidente');
     if (!elementoModal) return;
 
-    const modalVehiculo = new bootstrap.Modal(elementoModal, {
+    const modalAccidente = new bootstrap.Modal(elementoModal, {
         keyboard: false,
         backdrop: 'static' 
     });
 
-    const btnAbrirModal = document.getElementById('btn-abrir-modal-vehiculo');
+    const btnAbrirModal = document.getElementById('btn-abrir-modal-accidente');
     const btnEnviarRegistro = document.getElementById('btn-enviar-registro');
     const capaExito = document.getElementById('capa-exito');
     const btnAceptarExito = document.getElementById('btn-aceptar-exito');
-    const formularioNuevoVehiculo = document.getElementById('formulario-nuevo-vehiculo');
+    const formularioAccidente = document.getElementById('formulario-accidente');
 
     if (btnAbrirModal) {
         btnAbrirModal.addEventListener('click', () => {
-            modalVehiculo.show();
+            modalAccidente.show();
         });
     }
 
@@ -54,16 +61,17 @@ function inicializarEventosVehiculos() {
 
             try {
                 btnEnviarRegistro.disabled = true;
-                btnEnviarRegistro.textContent = "Registrando...";
+                btnEnviarRegistro.textContent = "Guardando...";
 
-                await ServicioVehiculos.registrarVehiculo();
+                // Llamada al Service simulado
+                await ServicioAccidentes.registrarAccidente();
 
                 if (capaExito) capaExito.classList.remove('d-none');
             } catch (error) {
                 alert("Ocurrió un error al registrar. Inténtelo de nuevo.");
             } finally {
                 btnEnviarRegistro.disabled = false;
-                btnEnviarRegistro.textContent = "Registrar";
+                btnEnviarRegistro.textContent = "Guardar registro";
             }
         });
     }
@@ -71,8 +79,8 @@ function inicializarEventosVehiculos() {
     if (btnAceptarExito) {
         btnAceptarExito.addEventListener('click', () => {
             if (capaExito) capaExito.classList.add('d-none');
-            modalVehiculo.hide();
-            if (formularioNuevoVehiculo) formularioNuevoVehiculo.reset();
+            modalAccidente.hide();
+            if (formularioAccidente) formularioAccidente.reset();
         });
     }
 }

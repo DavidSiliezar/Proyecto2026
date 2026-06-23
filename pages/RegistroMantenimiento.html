@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Mantenimiento - Fleet Manager</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/stylesRegMantenimiento.css">
+</head>
+<body>
+
+    <header class="barra-superior">
+        <img src="../img/group3.svg" alt="Fleet Manager Logo" class="logo-principal">
+        <button class="interruptor-movil" id="btn-menu-movil" aria-label="Abrir menú">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </header>
+
+    <aside class="barra-lateral" id="barra-lateral">
+        <div class="interruptor-menu" id="btn-escritorio">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        
+        <div class="mt-4 flex-grow-1 overflow-y-auto" style="overflow-x: hidden;">
+            <a href="./Dashboard.html" class="item-menu"><i class="fa-solid fa-house"></i> Inicio</a>
+            <a href="./Vehiculos.html" class="item-menu"><i class="fa-solid fa-car-side"></i> Vehículos</a>
+            
+            <div class="contenedor-submenu">
+                <a href="./Mantenimiento.html" class="item-menu activo" aria-expanded="true">
+                    <i class="fa-solid fa-screwdriver-wrench"></i> Mantenimiento 
+                    <i class="fa-solid fa-chevron-down ms-auto icono-desplegable"></i>
+                </a>
+                <div class="collapse show" id="submenu-mantenimiento">
+                    <a href="./MantPreventivo.html" class="item-sub-menu">Preventivo</a>
+                    <a href="./MantenimientoCorrectivo.html" class="item-sub-menu">Correctivo</a>
+                </div>
+            </div>
+
+            <a href="./Combustible.html" class="item-menu"><i class="fa-solid fa-gas-pump"></i> Combustible</a>
+            <a href="./Accidentes.html" class="item-menu"><i class="fa-solid fa-car-burst"></i> Accidentes</a>
+            <a href="./ReporteConductor.html" class="item-menu"><i class="fa-regular fa-file-lines"></i> Reporte conductor</a>
+            <a href="./Trabajadores.html" class="item-menu"><i class="fa-solid fa-helmet-safety"></i> Trabajadores</a>
+        </div>
+
+         <a href="./PerfilUsuario.html" class="perfil-usuario text-decoration-none">
+            <i class="fa-solid fa-circle-user fs-2 me-3"></i>
+            <span class="nombre-usuario">Nombre de Usuario</span>
+        </a>
+    </aside>
+
+    <main class="main-content" id="contenido-principal">
+        <div class="mb-4">
+            <h1 class="titulo-pagina mb-3" style="font-size: 24px; font-weight: 800;">Registro de Mantenimiento</h1>
+            
+            <div class="banner-vehiculo d-flex align-items-center bg-white px-4 py-3 rounded-4 shadow-sm border border-light">
+                <i class="fa-solid fa-car-side fs-4 text-primary me-3"></i>
+                <span class="fw-semibold text-dark fs-5">Vehículo seleccionado: 21312-23P</span>
+            </div>
+        </div>
+
+        <form id="form-registro-mantenimiento">
+            <div class="row g-4">
+                <div class="col-lg-7 d-flex flex-column gap-4">
+                    <div class="bg-white p-4 rounded-4 shadow-sm border border-light">
+                        <h5 class="fw-bold mb-3 fs-6">Taller que realizo el servicio</h5>
+                        
+                        <div class="mb-3">
+                            <input type="text" class="form-control input-gris custom-input" value="Mecánica Gómez">
+                        </div>
+                        
+                        <div class="mb-3 position-relative input-con-icono">
+                            <i class="fa-solid fa-location-dot position-absolute text-muted icono-input"></i>
+                            <input type="text" class="form-control input-gris custom-input ps-5" value="San Salvador, El Salvador">
+                        </div>
+                        
+                        <div class="mb-0 position-relative input-con-icono">
+                            <i class="fa-solid fa-phone position-absolute text-muted icono-input"></i>
+                            <input type="text" class="form-control input-gris custom-input ps-5" value="+503 7123-4567">
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-4 shadow-sm border border-light">
+                        <h5 class="fw-bold mb-3 fs-6">Descripción del servicio</h5>
+                        <textarea class="form-control input-gris custom-input" rows="4" style="resize: none;">Cambio de aceite, revisión de frenos y ajuste de suspensión.</textarea>
+                    </div>
+
+                    <div class="d-flex gap-3 mt-2">
+                        <button type="submit" class="btn btn-primary fw-bold px-5 py-2 rounded-3 text-white" style="background-color: #0066FF; border: none;">Guardar</button>
+                        <button type="button" class="btn btn-outline-danger fw-bold px-4 py-2 rounded-3 bg-white" style="border-color: #F87171; color: #EF4444;" onclick="window.history.back()">Descartar</button>
+                    </div>
+                </div>
+
+                <div class="col-lg-5 d-flex flex-column gap-4">
+                    <div class="bg-white p-4 rounded-4 shadow-sm border border-light">
+                        <h5 class="fw-bold mb-3 fs-6">Datos del mantenimiento</h5>
+                        
+                        <div class="mb-3 position-relative input-con-icono">
+                            <i class="fa-solid fa-dollar-sign position-absolute text-muted icono-input"></i>
+                            <input type="text" class="form-control input-gris custom-input ps-5" value="2K" placeholder="Costo">
+                        </div>
+
+                        <div class="mb-3 position-relative input-con-icono">
+                            <i class="fa-solid fa-gauge-high position-absolute text-muted icono-input"></i>
+                            <input type="text" class="form-control input-gris custom-input ps-5" value="5000 km" placeholder="Kilometraje">
+                        </div>
+
+                        <div class="mb-3 position-relative input-con-icono">
+                            <i class="fa-solid fa-wrench position-absolute text-muted icono-input"></i>
+                            <select class="form-select input-gris custom-input ps-5 appearance-none text-dark">
+                                <option value="preventivo" selected>Preventivo</option>
+                                <option value="correctivo">Correctivo</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-0 position-relative input-con-icono">
+                            <i class="fa-regular fa-calendar position-absolute text-muted icono-input"></i>
+                            <input type="text" class="form-control input-gris custom-input ps-5" value="15 de Octubre, 2023" placeholder="Fecha">
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-4 shadow-sm border border-light d-flex flex-column h-100">
+                        <h5 class="fw-bold mb-3 fs-6">Factura</h5>
+                        <div class="upload-area flex-grow-1 d-flex flex-column align-items-center justify-content-center text-center p-4" id="area-subida">
+                            <div class="icono-subida bg-light rounded-circle d-flex align-items-center justify-content-center mb-3 text-muted" style="width: 60px; height: 60px;">
+                                <i class="fa-solid fa-cloud-arrow-up fs-3"></i>
+                            </div>
+                            <p class="mb-1 fw-semibold text-dark"><span class="text-primary cursor-pointer text-decoration-underline" id="btn-browse">Click para subir</span> o arrastrar y soltar</p>
+                            <p class="text-muted small mb-0">SVG, PNG, JPG o PDF (max. 800x400px)</p>
+                            <input type="file" id="input-file" class="d-none" accept=".svg,.png,.jpg,.jpeg,.pdf">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/Controllers/regMantenimientoControllers.js"></script>
+</body>
+</html>

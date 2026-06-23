@@ -3,7 +3,7 @@ const ServicioTrabajadores = {
         return new Promise((resolver) => {
             setTimeout(() => {
                 resolver(true);
-            }, 300);
+            }, 500);
         });
     }
 };

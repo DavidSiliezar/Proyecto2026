@@ -3,7 +3,7 @@ const ServicioRegistrarTrabajador = {
         return new Promise((resolver) => {
             setTimeout(() => {
                 resolver({ exito: true });
-            }, 500);
+            }, 800);
         });
     }
 };

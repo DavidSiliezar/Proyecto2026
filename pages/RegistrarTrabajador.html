@@ -4,115 +4,121 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Trabajador - Panel de Flota</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles/stylesRegTrab.css">
 </head>
 <body>
 
-    <header class="barra-superior" id="cabecera-app">
-        <div class="contenedor-logo">
-            <i class="fa-solid fa-gear icono-logo"></i> Panel de Flota
-        </div>
+    <header class="barra-superior">
+        <img src="../img/group3.svg" alt="Fleet Manager Logo" class="logo-principal">
         <button class="interruptor-movil" id="btn-menu-movil" aria-label="Abrir menú">
             <i class="fa-solid fa-bars"></i>
         </button>
     </header>
 
-    <div class="contenedor-principal" id="envoltorio-app">
+    <aside class="barra-lateral" id="barra-lateral">
+        <div class="interruptor-menu" id="btn-escritorio">
+            <i class="fa-solid fa-bars"></i>
+        </div>
         
-        <aside class="barra-lateral" id="barra-lateral">
-            <button class="interruptor-menu" aria-label="Colapsar menú">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-            <nav class="mt-2 flex-grow-1" aria-label="Menú principal">
-                <a href="./Dashboard.html" class="enlace-navegacion"><i class="fa-solid fa-house"></i> Inicio</a>
-                <a href="./Vehiculos.html" class="enlace-navegacion"><i class="fa-solid fa-car-side"></i> Vehículos</a>
-                <a href="./Mantenimiento.html" class="enlace-navegacion"><i class="fa-solid fa-screwdriver-wrench"></i> Mantenimiento</a>
-                <a href="./Combustible.html" class="enlace-navegacion"><i class="fa-solid fa-gas-pump"></i> Combustible</a>
-                <a href="#" class="enlace-navegacion"><i class="fa-solid fa-car-burst"></i> Accidentes</a>
-                <a href="#" class="enlace-navegacion"><i class="fa-solid fa-file-invoice"></i> Reporte conductor</a>
-                <a href="./Trabajadores.html" class="enlace-navegacion activo"><i class="fa-solid fa-helmet-safety"></i> Trabajadores</a>
-            </nav>
+        <div class="mt-4 flex-grow-1 overflow-y-auto" style="overflow-x: hidden;">
+            <a href="./Dashboard.html" class="item-menu"><i class="fa-solid fa-house"></i> Inicio</a>
+            <a href="./Vehiculos.html" class="item-menu"><i class="fa-solid fa-car-side"></i> Vehículos</a>
             
-            <section class="perfil-usuario">
-                <img src="https://ui-avatars.com/api/?name=Usuario&background=fff&color=333" alt="Avatar del usuario">
-                <span>Nombre de Usuario</span>
-            </section>
-        </aside>
-
-        <main class="contenido">
-            <header class="cabecera-pagina">
-                <h1 class="titulo-pagina">Reportes de conductor</h1>
-            </header>
-
-            <div class="row flex-grow-1 overflow-hidden h-100 mt-3">
-                <div class="col-12 h-100 overflow-y-auto pb-5">
-                    <section class="tarjeta-registro bg-white p-5 rounded position-relative">
-                        <a href="./Trabajadores.html" class="btn-cerrar position-absolute top-0 end-0 m-4 bg-transparent border-0 fs-2 text-decoration-none" aria-label="Volver al inicio">&times;</a>
-
-                        <h3 class="fw-bold mb-5">Registro de trabajador</h3>
-
-                        <form action="#" method="POST" id="formularioRegistro">
-                            <div class="row">
-                                <div class="col-xl-8 col-lg-7">
-                                    <div class="row g-4">
-                                        <div class="col-md-6">
-                                            <input type="text" class="form-control entrada-formulario py-2 rounded-pill" placeholder="Nombre" required>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <input type="text" class="form-control entrada-formulario py-2 rounded-pill" placeholder="Apellido" required>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <input type="text" class="form-control entrada-formulario py-2 rounded-pill" placeholder="Rol" required>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <input type="email" class="form-control entrada-formulario py-2 rounded-pill" placeholder="Correo electrónico" required>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <input type="tel" class="form-control entrada-formulario py-2 rounded-pill" placeholder="Número de teléfono" required>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <input type="text" class="form-control entrada-formulario py-2 rounded-pill" placeholder="Carnet">
-                                        </div>
-                                        <div class="col-12 mt-4">
-                                            <textarea class="form-control entrada-formulario rounded" rows="4" placeholder="Más detalles.."></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <aside class="col-xl-4 col-lg-5 d-flex flex-column align-items-center mt-4 mt-lg-0 px-lg-4">
-                                    <div class="caja-subir-foto w-100 rounded mb-2">
-                                        <i class="fa-solid fa-camera icono-camara-app shadow"></i>
-                                    </div>
-                                    <span class="fw-bold align-self-start ms-1" style="cursor: pointer;">Subir foto</span>
-                                </aside>
-                            </div>
-
-                            <div class="d-flex justify-content-end mt-5">
-                                <button type="button" id="btnGuardar" class="btn-primario-personalizado text-white shadow-sm px-4">
-                                    Registrar nuevo trabajador
-                                </button>
-                            </div>
-                        </form>
-                    </section>
+            <div class="contenedor-submenu">
+                <a href="./Mantenimiento.html" class="item-menu" aria-expanded="false">
+                    <i class="fa-solid fa-screwdriver-wrench"></i> Mantenimiento 
+                    <i class="fa-solid fa-chevron-down ms-auto icono-desplegable"></i>
+                </a>
+                <div class="collapse" id="submenu-mantenimiento">
+                    <a href="./MantenimientoPreventivo.html" class="item-sub-menu">Preventivo</a>
+                    <a href="./MantenimientoCorrectivo.html" class="item-sub-menu">Correctivo</a>
                 </div>
             </div>
-        </main>
-    </div>
 
-    <div class="capa-modal" id="modalExito">
-        <div class="caja-alerta">
-            <div class="icono-exito shadow-sm">
-                <i class="fa-solid fa-check"></i>
+            <a href="./Combustible.html" class="item-menu"><i class="fa-solid fa-gas-pump"></i> Combustible</a>
+            <a href="./Accidentes.html" class="item-menu"><i class="fa-solid fa-car-burst"></i> Accidentes</a>
+            <a href="./ReporteConductor.html" class="item-menu"><i class="fa-regular fa-file-lines"></i> Reporte conductor</a>
+            <a href="./Trabajadores.html" class="item-menu activo"><i class="fa-solid fa-helmet-safety"></i> Trabajadores</a>
+        </div>
+
+         <a href="./PerfilUsuario.html" class="perfil-usuario text-decoration-none">
+            <i class="fa-solid fa-circle-user fs-2 me-3"></i>
+            <span class="nombre-usuario">Nombre de Usuario</span>
+        </a>
+    </aside>
+
+    <main class="main-content" id="contenido-principal">
+        <header class="cabecera-pagina">
+            <h1 class="titulo-pagina">Reportes de conductor</h1>
+        </header>
+
+        <div class="row flex-grow-1 mt-3">
+            <div class="col-12 pb-4">
+                <section class="tarjeta-registro position-relative">
+                    <a href="./Trabajadores.html" class="btn-cerrar position-absolute top-0 end-0 m-4 text-decoration-none" aria-label="Volver al inicio">&times;</a>
+
+                    <h3 class="fw-bold mb-5">Registro de trabajador</h3>
+
+                    <form action="#" method="POST" id="formularioRegistro">
+                        <div class="row">
+                            <div class="col-xl-8 col-lg-7">
+                                <div class="row g-4">
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control entrada-formulario py-2 rounded-pill" placeholder="Nombre" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control entrada-formulario py-2 rounded-pill" placeholder="Apellido" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control entrada-formulario py-2 rounded-pill" placeholder="Rol" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="email" class="form-control entrada-formulario py-2 rounded-pill" placeholder="Correo electrónico" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="tel" class="form-control entrada-formulario py-2 rounded-pill" placeholder="Número de teléfono" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control entrada-formulario py-2 rounded-pill" placeholder="Carnet">
+                                    </div>
+                                    <div class="col-12 mt-4">
+                                        <textarea class="form-control entrada-formulario rounded" rows="4" placeholder="Más detalles.."></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <aside class="col-xl-4 col-lg-5 d-flex flex-column align-items-center mt-4 mt-lg-0 px-lg-4">
+                                <div class="caja-subir-foto w-100 rounded mb-2">
+                                    <i class="fa-solid fa-camera icono-camara-app shadow"></i>
+                                </div>
+                                <span class="fw-bold align-self-start ms-1" style="cursor: pointer; color: #555;">Subir foto</span>
+                            </aside>
+                        </div>
+
+                        <div class="d-flex justify-content-end mt-5">
+                            <button type="button" id="btnGuardar" class="btn-primario-personalizado shadow-sm px-4">
+                                Registrar nuevo trabajador
+                            </button>
+                        </div>
+                    </form>
+                </section>
             </div>
-            <p class="texto-alerta">¡Trabajador añadido exitosamente!</p>
-            <a href="../Trabajadores.html" class="btn-aceptar">Aceptar</a>
+        </div>
+    </main>
+
+    <div class="capa-exito d-none" id="capa-exito">
+        <div class="tarjeta-exito">
+            <div class="icono-exito"><i class="fa-solid fa-check"></i></div>
+            <h3 class="texto-exito">¡Trabajador añadido exitosamente!</h3>
+            <a href="./Trabajadores.html" class="btn-aceptar-exito">Aceptar</a>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../js/Services/regTrabaj.js"></script>
     <script src="../js/Controllers/rebTrabaj.js"></script>
 </body>

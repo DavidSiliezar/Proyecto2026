@@ -5,8 +5,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function inicializarControlesInterfaz() {
     const btnMovil = document.getElementById('btn-menu-movil');
-    const btnEscritorio = document.querySelector('.interruptor-menu');
+    const btnEscritorio = document.getElementById('btn-escritorio');
     const barraLateral = document.getElementById('barra-lateral');
+    const contenidoPrincipal = document.getElementById('contenido-principal');
 
     if (barraLateral) {
         if (btnMovil) {
@@ -19,7 +20,10 @@ function inicializarControlesInterfaz() {
             btnEscritorio.addEventListener('click', () => {
                 barraLateral.classList.toggle('colapsado');
                 
-                
+                if (contenidoPrincipal) {
+                    contenidoPrincipal.classList.toggle('expandida');
+                }
+
                 const submenus = document.querySelectorAll('.collapse.show');
                 submenus.forEach(submenu => {
                     const bsCollapse = new bootstrap.Collapse(submenu, { toggle: false });
@@ -31,7 +35,6 @@ function inicializarControlesInterfaz() {
 }
 
 function inicializarGraficos() {
-    
     const ctxTipos = document.getElementById('grafico-tipos-mantenimiento');
     if (ctxTipos) {
         new Chart(ctxTipos, {
@@ -42,13 +45,13 @@ function inicializarGraficos() {
                     {
                         label: 'Preventivo',
                         data: [12, 19, 15, 22, 18, 25],
-                        backgroundColor: '#3b82f6', // Azul principal
+                        backgroundColor: '#3b82f6',
                         borderRadius: 4
                     },
                     {
                         label: 'Correctivo',
                         data: [5, 8, 4, 7, 5, 9],
-                        backgroundColor: '#f87171', // Rojo suave
+                        backgroundColor: '#f87171',
                         borderRadius: 4
                     }
                 ]
@@ -67,7 +70,6 @@ function inicializarGraficos() {
         });
     }
 
-    
     const ctxCostos = document.getElementById('grafico-costos-mensuales');
     if (ctxCostos) {
         new Chart(ctxCostos, {
@@ -77,10 +79,10 @@ function inicializarGraficos() {
                 datasets: [{
                     label: 'Costo ($)',
                     data: [12000, 15000, 11000, 18000, 14000, 15450],
-                    borderColor: '#8b5cf6', // Morado
-                    backgroundColor: 'rgba(139, 92, 246, 0.1)', // Fondo semi-transparente
+                    borderColor: '#8b5cf6',
+                    backgroundColor: 'rgba(139, 92, 246, 0.1)',
                     borderWidth: 3,
-                    tension: 0.4, // Curva suave
+                    tension: 0.4,
                     fill: true,
                     pointBackgroundColor: '#ffffff',
                     pointBorderColor: '#8b5cf6',
