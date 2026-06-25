@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mantenimiento Preventivo - Panel de Flota</title>
+    <title>Mantenimiento Preventivo - Fleet Manager</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -20,7 +20,7 @@
     </header>
 
     <aside class="barra-lateral" id="barra-lateral">
-        <div class="interruptor-menu" id="btn-escritorio">
+        <div class="interruptor-menu" id="btn-menu-escritorio">
             <i class="fa-solid fa-bars"></i>
         </div>
         
@@ -29,12 +29,14 @@
             <a href="./Vehiculos.html" class="item-menu"><i class="fa-solid fa-car-side"></i> Vehículos</a>
             
             <div class="contenedor-submenu">
-                <a href="./Mantenimiento.html" class="item-menu activo" aria-expanded="true">
+                <a href="./Mantenimiento.html" class="item-menu activo" id="enlace-mantenimiento" aria-expanded="true">
                     <i class="fa-solid fa-screwdriver-wrench"></i> Mantenimiento 
-                    <i class="fa-solid fa-chevron-down ms-auto icono-desplegable"></i>
+                    <span class="ms-auto" id="btn-flecha-desplegable" style="padding: 6px; display: inline-flex; align-items: center; justify-content: center;">
+                        <i class="fa-solid fa-chevron-down icono-desplegable"></i>
+                    </span>
                 </a>
                 <div class="collapse show" id="submenu-mantenimiento">
-                    <a href="./MantPreventivo.html" class="item-sub-menu activo">Preventivo</a>
+                    <a href="./MantenimientoPreventivo.html" class="item-sub-menu activo">Preventivo</a>
                     <a href="./MantenimientoCorrectivo.html" class="item-sub-menu">Correctivo</a>
                 </div>
             </div>
@@ -45,176 +47,224 @@
             <a href="./Trabajadores.html" class="item-menu"><i class="fa-solid fa-helmet-safety"></i> Trabajadores</a>
         </div>
 
-         <a href="./PerfilUsuario.html" class="perfil-usuario text-decoration-none">
+        <a href="./PerfilUsuario.html" class="perfil-usuario text-decoration-none">
             <i class="fa-solid fa-circle-user fs-2 me-3"></i>
             <span class="nombre-usuario">Nombre de Usuario</span>
         </a>
     </aside>
 
     <main class="main-content" id="contenido-principal">
-        <div class="d-flex flex-wrap align-items-stretch mb-4 gap-3">
-            <h1 class="titulo-pagina me-3 d-flex align-items-center" style="font-size: 22px; font-weight: 800; width: 160px; line-height: 1.1;">Mantenimiento<br>Preventivo</h1>
-            
-            <div class="d-flex gap-3 flex-grow-1 overflow-auto">
-                <div class="kpi-card d-flex flex-column text-white rounded-4 flex-grow-1 p-0 overflow-hidden" style="min-width: 200px; background-color: #4A85F6;">
-                    <div class="d-flex justify-content-between align-items-center p-3 pb-2">
-                        <div class="kpi-icon bg-white text-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; font-size: 22px;">
-                            <i class="fa-solid fa-wrench"></i>
-                        </div>
-                        <div class="text-end">
-                            <div class="fw-semibold" style="font-size: 13px;">Gasto total</div>
-                            <div class="fw-bold" style="font-size: 26px;">$42,500</div>
-                        </div>
-                    </div>
-                    <div class="text-center py-2 mt-auto text-white w-100" style="font-size: 12px; background-color: rgba(0,0,0,0.1);">11.4% del total</div>
-                </div>
-
-                <div class="kpi-card d-flex flex-column text-white rounded-4 flex-grow-1 p-0 overflow-hidden" style="min-width: 200px; background-color: #4A85F6;">
-                    <div class="d-flex justify-content-between align-items-center p-3 pb-2">
-                        <div class="kpi-icon bg-white text-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; font-size: 22px;">
-                            <i class="fa-solid fa-wrench"></i>
-                        </div>
-                        <div class="text-end">
-                            <div class="fw-semibold" style="font-size: 13px;">En proceso</div>
-                            <div class="fw-bold" style="font-size: 26px;">10</div>
-                        </div>
-                    </div>
-                    <div class="text-center py-2 mt-auto text-white w-100" style="font-size: 12px; background-color: rgba(0,0,0,0.1);">En taller</div>
-                </div>
-
-                <div class="kpi-card d-flex flex-column text-white rounded-4 flex-grow-1 p-0 overflow-hidden" style="min-width: 200px; background-color: #4A85F6;">
-                    <div class="d-flex justify-content-between align-items-center p-3 pb-2">
-                        <div class="kpi-icon bg-white text-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; font-size: 22px;">
-                            <i class="fa-solid fa-wrench"></i>
-                        </div>
-                        <div class="text-end">
-                            <div class="fw-semibold" style="font-size: 13px;">Pendientes</div>
-                            <div class="fw-bold" style="font-size: 26px;">6</div>
-                        </div>
-                    </div>
-                    <div class="text-center py-2 mt-auto text-white w-100" style="font-size: 12px; background-color: rgba(0,0,0,0.1);">Por realizar</div>
-                </div>
-
-                <div class="kpi-card d-flex flex-column text-white rounded-4 flex-grow-1 p-0 overflow-hidden" style="min-width: 200px; background-color: #4A85F6;">
-                    <div class="d-flex justify-content-between align-items-center p-3 pb-2">
-                        <div class="kpi-icon bg-white text-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; font-size: 22px;">
-                            <i class="fa-solid fa-wrench"></i>
-                        </div>
-                        <div class="text-end">
-                            <div class="fw-semibold" style="font-size: 13px;">Costo total</div>
-                            <div class="fw-bold" style="font-size: 26px;">10K</div>
-                        </div>
-                    </div>
-                    <div class="text-center py-2 mt-auto text-white w-100" style="font-size: 12px; background-color: rgba(0,0,0,0.1);">Gasto de mantenimientos</div>
-                </div>
+        <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3">
+            <div>
+                <h1 class="titulo-pagina m-0" style="font-size: 26px; font-weight: 800; color: #111827;">Mantenimiento Preventivo</h1>
+                <p class="text-muted m-0 mt-1" style="font-size: 14px;">Programación, control y rutinas de servicios rutinarios de la flota</p>
             </div>
-        </div>
-
-        <div class="d-flex flex-wrap align-items-center gap-3 mb-4 mt-3">
-            <div class="position-relative shadow-sm bg-white" style="width: 300px; border-radius: 20px;">
-                <i class="fa-solid fa-magnifying-glass position-absolute text-muted" style="left: 15px; top: 50%; transform: translateY(-50%);"></i>
-                <input type="text" class="form-control border-0 bg-transparent ps-5 py-2" placeholder="Buscar..." style="box-shadow: none; outline: none;">
-            </div>
-            
-            <button class="btn bg-white border text-muted shadow-sm d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; border-radius: 10px;">
-                <i class="fa-regular fa-trash-can"></i>
-            </button>
-
-            <div class="d-flex align-items-center border bg-white shadow-sm position-relative ms-2" style="border-radius: 20px; padding: 4px 15px;">
-                <span class="text-muted bg-white px-1" style="font-size: 11px; position: absolute; top: -8px; left: 15px;">Estado</span>
-                <select class="form-select border-0 bg-transparent shadow-none p-1 fw-bold text-dark text-center" style="width: 90px; cursor: pointer; font-size: 14px;">
-                    <option>Todos</option>
-                </select>
-            </div>
-            
-            <div class="d-flex align-items-center border bg-white shadow-sm position-relative" style="border-radius: 20px; padding: 4px 15px;">
-                <span class="text-muted bg-white px-1" style="font-size: 11px; position: absolute; top: -8px; left: 15px;">Tipo</span>
-                <select class="form-select border-0 bg-transparent shadow-none p-1 fw-bold text-dark text-center" style="width: 90px; cursor: pointer; font-size: 14px;">
-                    <option>Todos</option>
-                </select>
-            </div>
-
-            <div class="d-flex align-items-center border bg-white shadow-sm position-relative" style="border-radius: 20px; padding: 4px 15px;">
-                <span class="text-muted bg-white px-1" style="font-size: 11px; position: absolute; top: -8px; left: 15px;">Marca</span>
-                <select class="form-select border-0 bg-transparent shadow-none p-1 fw-bold text-dark text-center" style="width: 90px; cursor: pointer; font-size: 14px;">
-                    <option>Todos</option>
-                </select>
-            </div>
-
-            <div class="ms-auto">
-                <a href="./RegistroMantenimiento.html" class="btn text-white fw-bold shadow-sm px-4 py-2 text-decoration-none d-inline-block text-center" style="background-color: #0066FF; border-radius: 20px; font-size: 14px;">
-                    + Registrar mantenimiento
+            <div class="d-flex gap-2">
+                <button class="btn btn-light shadow-sm border border-light-subtle fw-semibold d-flex align-items-center gap-2 px-3 py-2" style="font-size: 14px; border-radius: 10px;">
+                    <i class="fa-solid fa-file-export text-muted"></i> Exportar
+                </button>
+                <a href="./RegistroMantenimiento.html" class="btn text-white fw-semibold d-flex align-items-center gap-2 px-4 py-2 shadow-sm" style="background-color: #0066FF; border-radius: 10px; font-size: 14px;">
+                    <i class="fa-solid fa-plus"></i> Nuevo Registro
                 </a>
             </div>
         </div>
 
-        <div class="w-100 table-responsive overflow-visible pb-3">
-            <div class="d-flex text-white px-4 py-3 mb-3 text-center align-items-center" style="background-color: #2b3252; border-radius: 8px; font-size: 13px; font-weight: 500;">
-                <div style="flex: 1.5;">Matricula</div>
-                <div style="flex: 1;">Marca</div>
-                <div style="flex: 1;">Modelo</div>
-                <div style="flex: 1;">Costo</div>
-                <div style="flex: 1.5;">Kilometraje</div>
-                <div style="flex: 2;">Numero VIN</div>
-                <div style="flex: 1.5;">Servicio</div>
-                <div style="flex: 2;">Estado</div>
-            </div>
-
-            <div class="d-flex flex-column gap-3">
-                <div class="d-flex bg-white px-4 py-3 text-center align-items-center shadow-sm fila-registro" style="border-radius: 12px; font-size: 13px; border: 1px solid #e2e8f0; cursor: pointer;" onclick="window.location.href='./RegistroMantenimiento.html'">
-                    <div style="flex: 1.5;" class="text-dark">21312-23P</div>
-                    <div style="flex: 1;" class="text-dark">Toyota</div>
-                    <div style="flex: 1;" class="text-dark">Hilux</div>
-                    <div style="flex: 1;" class="text-dark">2K</div>
-                    <div style="flex: 1.5;" class="text-dark">5,000km</div>
-                    <div style="flex: 2;" class="text-dark">1HGCM82633A123456</div>
-                    <div style="flex: 1.5;" class="fw-bold" style="color: #4CAF50;">Preventivo</div>
-                    <div style="flex: 2;" class="d-flex justify-content-between align-items-center pl-2">
-                        <span class="badge w-100 me-2 py-2 text-dark" style="background-color: #FBBF24; border-radius: 6px; font-size: 12px; font-weight: 600;">En taller</span>
-                        <div class="d-flex gap-2">
-                            <button class="btn btn-light rounded-circle text-primary p-0 d-flex align-items-center justify-content-center boton-accion" style="width: 32px; height: 32px; border: 1px solid #bfdbfe; background-color: #eef2ff;"><i class="fa-solid fa-eye" style="font-size: 13px;"></i></button>
-                            <button class="btn btn-light rounded-circle text-primary p-0 d-flex align-items-center justify-content-center boton-accion" style="width: 32px; height: 32px; border: 1px solid #bfdbfe; background-color: #eef2ff;"><i class="fa-solid fa-pencil" style="font-size: 13px;"></i></button>
-                            <button class="btn btn-light rounded-circle text-primary p-0 d-flex align-items-center justify-content-center boton-accion" style="width: 32px; height: 32px; border: 1px solid #bfdbfe; background-color: #eef2ff;"><i class="fa-solid fa-trash" style="font-size: 13px;"></i></button>
+        <div class="row g-3 mb-4">
+            <div class="col-xl-3 col-md-6">
+                <div class="kpi-profesional bg-white border-0 shadow-sm rounded-4 p-4 h-100 d-flex flex-column justify-content-between position-relative overflow-hidden">
+                    <div class="decoracion-borde" style="background-color: #3B82F6;"></div>
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <div>
+                            <p class="text-muted text-uppercase fw-bold mb-1" style="font-size: 11px; letter-spacing: 0.5px;">Gasto Total</p>
+                            <h3 class="fw-bolder m-0" style="font-size: 28px; color: #111827;">$42,500</h3>
+                        </div>
+                        <div class="kpi-icono bg-primary bg-opacity-10 text-primary rounded-3 d-flex align-items-center justify-content-center" style="width: 45px; height: 45px;">
+                            <i class="fa-solid fa-sack-dollar fs-5"></i>
                         </div>
                     </div>
-                </div>
-
-                <div class="d-flex bg-white px-4 py-3 text-center align-items-center shadow-sm fila-registro" style="border-radius: 12px; font-size: 13px; border: 1px solid #e2e8f0; cursor: pointer;" onclick="window.location.href='./RegistroMantenimiento.html'">
-                    <div style="flex: 1.5;" class="text-dark">21312-23P</div>
-                    <div style="flex: 1;" class="text-dark">Toyota</div>
-                    <div style="flex: 1;" class="text-dark">Hilux</div>
-                    <div style="flex: 1;" class="text-dark">2K</div>
-                    <div style="flex: 1.5;" class="text-dark">5,000km</div>
-                    <div style="flex: 2;" class="text-dark">1HGCM82633A123456</div>
-                    <div style="flex: 1.5;" class="fw-bold" style="color: #4CAF50;">Preventivo</div>
-                    <div style="flex: 2;" class="d-flex justify-content-between align-items-center pl-2">
-                        <span class="badge w-100 me-2 py-2" style="background-color: #F59E0B; border-radius: 6px; font-size: 12px; font-weight: 600;">En proceso</span>
-                        <div class="d-flex gap-2">
-                            <button class="btn btn-light rounded-circle text-primary p-0 d-flex align-items-center justify-content-center boton-accion" style="width: 32px; height: 32px; border: 1px solid #bfdbfe; background-color: #eef2ff;"><i class="fa-solid fa-eye" style="font-size: 13px;"></i></button>
-                            <button class="btn btn-light rounded-circle text-primary p-0 d-flex align-items-center justify-content-center boton-accion" style="width: 32px; height: 32px; border: 1px solid #bfdbfe; background-color: #eef2ff;"><i class="fa-solid fa-pencil" style="font-size: 13px;"></i></button>
-                            <button class="btn btn-light rounded-circle text-primary p-0 d-flex align-items-center justify-content-center boton-accion" style="width: 32px; height: 32px; border: 1px solid #bfdbfe; background-color: #eef2ff;"><i class="fa-solid fa-trash" style="font-size: 13px;"></i></button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="d-flex bg-white px-4 py-3 text-center align-items-center shadow-sm fila-registro" style="border-radius: 12px; font-size: 13px; border: 1px solid #e2e8f0; cursor: pointer;" onclick="window.location.href='./RegistroMantenimiento.html'">
-                    <div style="flex: 1.5;" class="text-dark">21312-23P</div>
-                    <div style="flex: 1;" class="text-dark">Toyota</div>
-                    <div style="flex: 1;" class="text-dark">Hilux</div>
-                    <div style="flex: 1;" class="text-dark">2K</div>
-                    <div style="flex: 1.5;" class="text-dark">5,000km</div>
-                    <div style="flex: 2;" class="text-dark">1HGCM82633A123456</div>
-                    <div style="flex: 1.5;" class="fw-bold" style="color: #4CAF50;">Preventivo</div>
-                    <div style="flex: 2;" class="d-flex justify-content-between align-items-center pl-2">
-                        <span class="badge w-100 me-2 py-2" style="background-color: #F59E0B; border-radius: 6px; font-size: 12px; font-weight: 600;">Fuera de servicio</span>
-                        <div class="d-flex gap-2">
-                            <button class="btn btn-light rounded-circle text-primary p-0 d-flex align-items-center justify-content-center boton-accion" style="width: 32px; height: 32px; border: 1px solid #bfdbfe; background-color: #eef2ff;"><i class="fa-solid fa-eye" style="font-size: 13px;"></i></button>
-                            <button class="btn btn-light rounded-circle text-primary p-0 d-flex align-items-center justify-content-center boton-accion" style="width: 32px; height: 32px; border: 1px solid #bfdbfe; background-color: #eef2ff;"><i class="fa-solid fa-pencil" style="font-size: 13px;"></i></button>
-                            <button class="btn btn-light rounded-circle text-primary p-0 d-flex align-items-center justify-content-center boton-accion" style="width: 32px; height: 32px; border: 1px solid #bfdbfe; background-color: #eef2ff;"><i class="fa-solid fa-trash" style="font-size: 13px;"></i></button>
-                        </div>
+                    <div class="d-flex align-items-center mt-2">
+                        <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-2 py-1 me-2" style="font-size: 11px;">11.4%</span>
+                        <span class="text-muted" style="font-size: 12px;">del gasto general</span>
                     </div>
                 </div>
             </div>
+            
+            <div class="col-xl-3 col-md-6">
+                <div class="kpi-profesional bg-white border-0 shadow-sm rounded-4 p-4 h-100 d-flex flex-column justify-content-between position-relative overflow-hidden">
+                    <div class="decoracion-borde" style="background-color: #F59E0B;"></div>
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <div>
+                            <p class="text-muted text-uppercase fw-bold mb-1" style="font-size: 11px; letter-spacing: 0.5px;">En Proceso</p>
+                            <h3 class="fw-bolder m-0" style="font-size: 28px; color: #111827;">10</h3>
+                        </div>
+                        <div class="kpi-icono bg-warning bg-opacity-10 text-warning rounded-3 d-flex align-items-center justify-content-center" style="width: 45px; height: 45px;">
+                            <i class="fa-solid fa-spinner fs-5"></i>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center mt-2">
+                        <span class="text-muted" style="font-size: 12px;">Servicios activos en taller</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6">
+                <div class="kpi-profesional bg-white border-0 shadow-sm rounded-4 p-4 h-100 d-flex flex-column justify-content-between position-relative overflow-hidden">
+                    <div class="decoracion-borde" style="background-color: #10B981;"></div>
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <div>
+                            <p class="text-muted text-uppercase fw-bold mb-1" style="font-size: 11px; letter-spacing: 0.5px;">Pendientes</p>
+                            <h3 class="fw-bolder m-0" style="font-size: 28px; color: #111827;">6</h3>
+                        </div>
+                        <div class="kpi-icono bg-success bg-opacity-10 text-success rounded-3 d-flex align-items-center justify-content-center" style="width: 45px; height: 45px;">
+                            <i class="fa-solid fa-calendar-check fs-5"></i>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center mt-2">
+                        <span class="text-muted" style="font-size: 12px;">Por realizar esta semana</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6">
+                <div class="kpi-profesional bg-white border-0 shadow-sm rounded-4 p-4 h-100 d-flex flex-column justify-content-between position-relative overflow-hidden">
+                    <div class="decoracion-borde" style="background-color: #6B7280;"></div>
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <div>
+                            <p class="text-muted text-uppercase fw-bold mb-1" style="font-size: 11px; letter-spacing: 0.5px;">Costo de Rutina</p>
+                            <h3 class="fw-bolder m-0" style="font-size: 28px; color: #111827;">10K</h3>
+                        </div>
+                        <div class="kpi-icono bg-secondary bg-opacity-10 text-secondary rounded-3 d-flex align-items-center justify-content-center" style="width: 45px; height: 45px;">
+                            <i class="fa-solid fa-chart-line fs-5"></i>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center mt-2">
+                        <span class="text-muted" style="font-size: 12px;">Promedio por mantenimientos</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white p-3 rounded-4 shadow-sm mb-4 border border-light-subtle">
+            <div class="d-flex flex-wrap align-items-center gap-3">
+                <div class="position-relative flex-grow-1" style="max-width: 300px;">
+                    <i class="fa-solid fa-magnifying-glass position-absolute text-muted" style="left: 16px; top: 50%; transform: translateY(-50%);"></i>
+                    <input type="text" class="form-control bg-light border-0 ps-5 py-2" placeholder="Buscar..." style="border-radius: 10px; font-size: 14px; box-shadow: inset 0 1px 2px rgba(0,0,0,0.02);">
+                </div>
+                
+                <button class="btn btn-light text-muted border border-light-subtle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; border-radius: 10px;" title="Limpiar filtros">
+                    <i class="fa-regular fa-trash-can"></i>
+                </button>
+
+                <div class="vr mx-1 text-muted d-none d-md-block" style="height: 30px;"></div>
+
+                <div class="d-flex align-items-center gap-2">
+                    <div class="position-relative align-items-center d-flex">
+                        <span class="text-muted bg-white px-1 exact-filtro-etiqueta">Estado</span>
+                        <select class="form-select bg-white border py-2 fw-bold text-dark text-center selector-filtro-personalizado">
+                            <option value="">Todos</option>
+                            <option value="taller">En taller</option>
+                            <option value="proceso">En proceso</option>
+                            <option value="fuera">Fuera de servicio</option>
+                        </select>
+                    </div>
+
+                    <div class="position-relative align-items-center d-flex">
+                        <span class="text-muted bg-white px-1 exact-filtro-etiqueta">Tipo</span>
+                        <select class="form-select bg-white border py-2 fw-bold text-dark text-center selector-filtro-personalizado">
+                            <option value="">Todos</option>
+                        </select>
+                    </div>
+
+                    <div class="position-relative align-items-center d-flex">
+                        <span class="text-muted bg-white px-1 exact-filtro-etiqueta">Marca</span>
+                        <select class="form-select bg-white border py-2 fw-bold text-dark text-center selector-filtro-personalizado">
+                            <option value="">Todos</option>
+                            <option value="toyota">Toyota</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-100 table-responsive pb-3">
+            <table class="table tabla-profesional align-middle">
+                <thead>
+                    <tr>
+                        <th class="ps-4">Matrícula</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Costo</th>
+                        <th>Kilometraje</th>
+                        <th>Número VIN</th>
+                        <th>Servicio</th>
+                        <th>Estado</th>
+                        <th class="text-end pe-4">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody class="border-0">
+                    
+                    <tr class="fila-registro shadow-sm" style="cursor: pointer;" onclick="window.location.href='./RegistroMantenimiento.html'">
+                        <td class="ps-4 py-3 border-0 fw-semibold text-dark">21312-23P</td>
+                        <td class="border-0 py-3 text-secondary">Toyota</td>
+                        <td class="border-0 py-3 text-secondary">Hilux</td>
+                        <td class="border-0 py-3 fw-bold text-dark">2K</td>
+                        <td class="border-0 py-3 text-secondary">5,000km</td>
+                        <td class="border-0 py-3 font-monospace text-muted" style="font-size: 12px;">1HGCM82633A123456</td>
+                        <td class="border-0 py-3"><span class="fw-bold" style="color: #4CAF50;">Preventivo</span></td>
+                        <td class="border-0 py-3">
+                            <span class="badge w-100 py-2 text-dark" style="background-color: #FBBF24; border-radius: 6px; font-size: 12px; font-weight: 600;">En taller</span>
+                        </td>
+                        <td class="border-0 pe-4 py-3 text-end">
+                            <div class="d-flex justify-content-end gap-1">
+                                <button class="btn btn-light rounded-circle text-primary p-0 d-flex align-items-center justify-content-center boton-accion border-0" style="width: 32px; height: 32px; background-color: #eef2ff;"><i class="fa-solid fa-eye" style="font-size: 13px;"></i></button>
+                                <button class="btn btn-light rounded-circle text-primary p-0 d-flex align-items-center justify-content-center boton-accion border-0" style="width: 32px; height: 32px; background-color: #eef2ff;"><i class="fa-solid fa-pencil" style="font-size: 13px;"></i></button>
+                                <button class="btn btn-light rounded-circle text-primary p-0 d-flex align-items-center justify-content-center boton-accion border-0" style="width: 32px; height: 32px; background-color: #eef2ff;"><i class="fa-solid fa-trash" style="font-size: 13px;"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr class="fila-registro shadow-sm" style="cursor: pointer;" onclick="window.location.href='./RegistroMantenimiento.html'">
+                        <td class="ps-4 py-3 border-0 fw-semibold text-dark">21312-23P</td>
+                        <td class="border-0 py-3 text-secondary">Toyota</td>
+                        <td class="border-0 py-3 text-secondary">Hilux</td>
+                        <td class="border-0 py-3 fw-bold text-dark">2K</td>
+                        <td class="border-0 py-3 text-secondary">5,000km</td>
+                        <td class="border-0 py-3 font-monospace text-muted" style="font-size: 12px;">1HGCM82633A123456</td>
+                        <td class="border-0 py-3"><span class="fw-bold" style="color: #4CAF50;">Preventivo</span></td>
+                        <td class="border-0 py-3">
+                            <span class="badge w-100 py-2 text-white" style="background-color: #F59E0B; border-radius: 6px; font-size: 12px; font-weight: 600;">En proceso</span>
+                        </td>
+                        <td class="border-0 pe-4 py-3 text-end">
+                            <div class="d-flex justify-content-end gap-1">
+                                <button class="btn btn-light rounded-circle text-primary p-0 d-flex align-items-center justify-content-center boton-accion border-0" style="width: 32px; height: 32px; background-color: #eef2ff;"><i class="fa-solid fa-eye" style="font-size: 13px;"></i></button>
+                                <button class="btn btn-light rounded-circle text-primary p-0 d-flex align-items-center justify-content-center boton-accion border-0" style="width: 32px; height: 32px; background-color: #eef2ff;"><i class="fa-solid fa-pencil" style="font-size: 13px;"></i></button>
+                                <button class="btn btn-light rounded-circle text-primary p-0 d-flex align-items-center justify-content-center boton-accion border-0" style="width: 32px; height: 32px; background-color: #eef2ff;"><i class="fa-solid fa-trash" style="font-size: 13px;"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr class="fila-registro shadow-sm" style="cursor: pointer;" onclick="window.location.href='./RegistroMantenimiento.html'">
+                        <td class="ps-4 py-3 border-0 fw-semibold text-dark">21312-23P</td>
+                        <td class="border-0 py-3 text-secondary">Toyota</td>
+                        <td class="border-0 py-3 text-secondary">Hilux</td>
+                        <td class="border-0 py-3 fw-bold text-dark">2K</td>
+                        <td class="border-0 py-3 text-secondary">5,000km</td>
+                        <td class="border-0 py-3 font-monospace text-muted" style="font-size: 12px;">1HGCM82633A123456</td>
+                        <td class="border-0 py-3"><span class="fw-bold" style="color: #4CAF50;">Preventivo</span></td>
+                        <td class="border-0 py-3">
+                            <span class="badge w-100 py-2 text-white" style="background-color: #EF4444; border-radius: 6px; font-size: 12px; font-weight: 600;">Fuera de servicio</span>
+                        </td>
+                        <td class="border-0 pe-4 py-3 text-end">
+                            <div class="d-flex justify-content-end gap-1">
+                                <button class="btn btn-light rounded-circle text-primary p-0 d-flex align-items-center justify-content-center boton-accion border-0" style="width: 32px; height: 32px; background-color: #eef2ff;"><i class="fa-solid fa-eye" style="font-size: 13px;"></i></button>
+                                <button class="btn btn-light rounded-circle text-primary p-0 d-flex align-items-center justify-content-center boton-accion border-0" style="width: 32px; height: 32px; background-color: #eef2ff;"><i class="fa-solid fa-pencil" style="font-size: 13px;"></i></button>
+                                <button class="btn btn-light rounded-circle text-primary p-0 d-flex align-items-center justify-content-center boton-accion border-0" style="width: 32px; height: 32px; background-color: #eef2ff;"><i class="fa-solid fa-trash" style="font-size: 13px;"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
         </div>
     </main>
 

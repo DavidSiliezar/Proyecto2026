@@ -3,39 +3,67 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function inicializarControlesInterfaz() {
-    const btnMovil = document.getElementById('btn-menu-movil');
-    const btnEscritorio = document.getElementById('btn-escritorio');
+    const btnMenuMovil = document.getElementById('btn-menu-movil');
+    const btnMenuEscritorio = document.getElementById('btn-menu-escritorio');
     const barraLateral = document.getElementById('barra-lateral');
     const contenidoPrincipal = document.getElementById('contenido-principal');
 
     if (barraLateral) {
-        if (btnMovil) {
-            btnMovil.addEventListener('click', () => {
+        if (btnMenuMovil) {
+            btnMenuMovil.addEventListener('click', () => {
                 barraLateral.classList.toggle('mostrar');
             });
         }
         
-        if (btnEscritorio) {
-            btnEscritorio.addEventListener('click', () => {
+        if (btnMenuEscritorio) {
+            btnMenuEscritorio.addEventListener('click', () => {
                 barraLateral.classList.toggle('colapsado');
                 
                 if (contenidoPrincipal) {
                     contenidoPrincipal.classList.toggle('expandida');
                 }
 
-                const submenus = document.querySelectorAll('.collapse.show');
-                submenus.forEach(submenu => {
-                    const bsCollapse = new bootstrap.Collapse(submenu, { toggle: false });
-                    bsCollapse.hide();
+                const submenusActivos = document.querySelectorAll('.collapse.show');
+                submenusActivos.forEach(submenu => {
+                    const instanciaColapso = new bootstrap.Collapse(submenu, { toggle: false });
+                    instanciaColapso.hide();
                 });
             });
         }
     }
     
+    const btnFlechaDesplegable = document.getElementById('btn-flecha-desplegable');
+    const submenuMantenimiento = document.getElementById('submenu-mantenimiento');
+    const enlaceMantenimiento = document.getElementById('enlace-mantenimiento');
+
+    if (submenuMantenimiento && enlaceMantenimiento) {
+        const instanciaColapsoSubmenu = new bootstrap.Collapse(submenuMantenimiento, { toggle: false });
+        
+        if (btnFlechaDesplegable) {
+            btnFlechaDesplegable.addEventListener('click', (evento) => {
+                evento.preventDefault();
+                evento.stopPropagation();
+                if (submenuMantenimiento.classList.contains('show')) {
+                    instanciaColapsoSubmenu.hide();
+                } else {
+                    instanciaColapsoSubmenu.show();
+                }
+            });
+        }
+
+        submenuMantenimiento.addEventListener('show.bs.collapse', () => {
+            enlaceMantenimiento.setAttribute('aria-expanded', 'true');
+        });
+
+        submenuMantenimiento.addEventListener('hide.bs.collapse', () => {
+            enlaceMantenimiento.setAttribute('aria-expanded', 'false');
+        });
+    }
+    
     const botonesAccion = document.querySelectorAll('.boton-accion');
     botonesAccion.forEach(boton => {
-        boton.addEventListener('click', (e) => {
-            e.stopPropagation();
+        boton.addEventListener('click', (evento) => {
+            evento.stopPropagation();
         });
     });
 }
