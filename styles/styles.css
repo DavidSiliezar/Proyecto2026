@@ -6,6 +6,40 @@ body {
     overflow-x: hidden;
 }
 
+/* Intro Netflix Style */
+.intro-netflix {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000000;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeOutIntro 0.8s cubic-bezier(0.8, 0, 0.2, 1) forwards;
+    animation-delay: 2.2s;
+}
+
+.intro-logo {
+    width: 180px;
+    height: auto;
+    border-radius: 50%;
+    animation: netflixZoom 2.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes netflixZoom {
+    0% { transform: scale(0.5); opacity: 0; }
+    30% { transform: scale(1.1); opacity: 1; }
+    80% { transform: scale(1.2); opacity: 1; filter: brightness(1.2); }
+    100% { transform: scale(3.5); opacity: 0; filter: blur(10px); }
+}
+
+@keyframes fadeOutIntro {
+    to { opacity: 0; visibility: hidden; }
+}
+
 .caja-login {
     width: 100%;
     max-width: 480px;

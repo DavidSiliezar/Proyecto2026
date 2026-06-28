@@ -36,10 +36,9 @@ function inicializarControlesInterfaz() {
 
 function inicializarEventosFormulario() {
     const btnGuardar = document.getElementById('btnGuardar');
-    const capaExito = document.getElementById('capa-exito');
     const formulario = document.getElementById('formularioRegistro');
 
-    if (btnGuardar && capaExito && formulario) {
+    if (btnGuardar && formulario) {
         btnGuardar.addEventListener('click', async () => {
             if (formulario.checkValidity()) {
                 
@@ -50,7 +49,21 @@ function inicializarEventosFormulario() {
                 const respuesta = await ServicioRegistrarTrabajador.registrar({});
                 
                 if (respuesta.exito) {
-                    capaExito.classList.remove('d-none');
+                    if (typeof Swal !== 'undefined') {
+                        Swal.fire({
+                            title: '¡Trabajador Registrado!',
+                            text: 'El nuevo empleado ha sido añadido exitosamente a la plataforma.',
+                            icon: 'success',
+                            confirmButtonColor: '#0d6efd',
+                            confirmButtonText: 'Continuar',
+                            customClass: { confirmButton: 'rounded-pill px-4' }
+                        }).then(() => {
+                            window.location.href = './Trabajadores.html';
+                        });
+                    } else {
+                        alert("¡Trabajador añadido exitosamente!");
+                        window.location.href = './Trabajadores.html';
+                    }
                 }
                 
                 btnGuardar.disabled = false;

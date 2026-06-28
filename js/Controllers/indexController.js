@@ -1,4 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // Remover la intro después de la animación
+    const introElement = document.getElementById("intro-netflix");
+    if (introElement) {
+        setTimeout(() => {
+            introElement.remove();
+        }, 3200);
+    }
+
     const formulario = document.getElementById("formulario-login");
     const entradaClave = document.getElementById("clave");
     const iconoAlternar = document.getElementById("alternar-clave");
@@ -28,7 +36,20 @@ document.addEventListener("DOMContentLoaded", () => {
         const respuesta = await ServicioLogin.procesarAutenticacion(usuario, clave);
 
         if (respuesta.exito) {
-            window.location.href = "./pages/Dashboard.html";
+            if (typeof Swal !== 'undefined') {
+                Swal.fire({
+                    title: '¡Bienvenido!',
+                    text: 'Iniciando sesión en el panel de control...',
+                    icon: 'success',
+                    timer: 1500,
+                    showConfirmButton: false,
+                    allowOutsideClick: false
+                }).then(() => {
+                    window.location.href = "./pages/Dashboard.html";
+                });
+            } else {
+                window.location.href = "./pages/Dashboard.html";
+            }
         } else {
             botonSubmit.disabled = false;
             botonSubmit.innerHTML = "Iniciar Sesión";

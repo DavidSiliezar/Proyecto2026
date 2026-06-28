@@ -22,25 +22,37 @@
 
     <div class="contenedor-principal" id="envoltorio-app">
         
-        <aside class="barra-lateral" id="barra-lateral">
-            <button class="interruptor-menu" aria-label="Colapsar menú">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-            <nav class="mt-2 flex-grow-1" aria-label="Menú principal">
-                <a href="./Dashboard.html" class="enlace-navegacion"><i class="fa-solid fa-house"></i> Inicio</a>
-                <a href="./Vehiculos.html" class="enlace-navegacion"><i class="fa-solid fa-car-side"></i> Vehículos</a>
-                <a href="./Mantenimiento.html" class="enlace-navegacion"><i class="fa-solid fa-screwdriver-wrench"></i> Mantenimiento</a>
-                <a href="./Combustible.html" class="enlace-navegacion activo"><i class="fa-solid fa-gas-pump"></i> Combustible</a>
-                <a href="./Accidentes.html" class="enlace-navegacion"><i class="fa-solid fa-car-burst"></i> Accidentes</a>
-                <a href="./ReporteConductor.html" class="enlace-navegacion"><i class="fa-solid fa-file-invoice"></i> Reporte conductor</a>
-                <a href="./Trabajadores.html" class="enlace-navegacion"><i class="fa-solid fa-helmet-safety"></i> Trabajadores</a>
-            </nav>
+                <aside class="barra-lateral" id="barra-lateral">
+        <div class="interruptor-menu" id="btn-escritorio" style="cursor: pointer;">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        
+        <div class="mt-4 flex-grow-1 overflow-y-auto" style="overflow-x: hidden;">
+            <a href="./Dashboard.html" class="item-menu"><i class="fa-solid fa-house"></i> Inicio</a>
+            <a href="./Vehiculos.html" class="item-menu"><i class="fa-solid fa-car-side"></i> Vehículos</a>
             
-                 <a href="./PerfilUsuario.html" class="perfil-usuario text-decoration-none">
+            <div class="contenedor-submenu">
+                <a href="./Mantenimiento.html" class="item-menu" aria-expanded="false" >
+                    <i class="fa-solid fa-screwdriver-wrench"></i> Mantenimiento 
+                    <i class="fa-solid fa-chevron-down ms-auto icono-desplegable"></i>
+                </a>
+                <div class="collapse" id="submenu-mantenimiento">
+                    <a href="./MantPreventivo.html" class="item-sub-menu">Preventivo</a>
+                    <a href="./MantenimientoCorrectivo.html" class="item-sub-menu">Correctivo</a>
+                </div>
+            </div>
+
+            <a href="./Combustible.html" class="item-menu"><i class="fa-solid fa-gas-pump"></i> Combustible</a>
+            <a href="./Accidentes.html" class="item-menu"><i class="fa-solid fa-car-burst"></i> Accidentes</a>
+            <a href="./ReporteConductor.html" class="item-menu"><i class="fa-regular fa-file-lines"></i> Reporte conductor</a>
+            <a href="./Trabajadores.html" class="item-menu"><i class="fa-solid fa-helmet-safety"></i> Trabajadores</a>
+        </div>
+
+        <a href="./PerfilUsuario.html" class="perfil-usuario text-decoration-none">
             <i class="fa-solid fa-circle-user fs-2 me-3"></i>
             <span class="nombre-usuario">Nombre de Usuario</span>
         </a>
-        </aside>
+    </aside>
 
         <main class="contenido">
             <header class="cabecera-pagina-grafica mb-5 mt-2">
@@ -71,5 +83,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../js/Services/graficasCombustible.js"></script>
     <script src="../js/Controllers/GraficasCombustible.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="../js/globalInteractions.js"></script>
 </body>
 </html>

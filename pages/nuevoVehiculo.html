@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo Vehículo - Fleet Manager</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/nuevoVehiculo.css">
+</head>
+<body>
+
+    <header class="barra-superior">
+        <img src="../img/group3.svg" alt="Fleet Manager Logo" class="logo-principal">
+        <button class="interruptor-movil" id="btn-menu-movil" aria-label="Abrir menú">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </header>
+
+            <aside class="barra-lateral" id="barra-lateral">
+        <div class="interruptor-menu" id="btn-escritorio" style="cursor: pointer;">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        
+        <div class="mt-4 flex-grow-1 overflow-y-auto" style="overflow-x: hidden;">
+            <a href="./Dashboard.html" class="item-menu"><i class="fa-solid fa-house"></i> Inicio</a>
+            <a href="./Vehiculos.html" class="item-menu"><i class="fa-solid fa-car-side"></i> Vehículos</a>
+            
+            <div class="contenedor-submenu">
+                <a href="./Mantenimiento.html" class="item-menu" aria-expanded="false" >
+                    <i class="fa-solid fa-screwdriver-wrench"></i> Mantenimiento 
+                    <i class="fa-solid fa-chevron-down ms-auto icono-desplegable"></i>
+                </a>
+                <div class="collapse" id="submenu-mantenimiento">
+                    <a href="./MantPreventivo.html" class="item-sub-menu">Preventivo</a>
+                    <a href="./MantenimientoCorrectivo.html" class="item-sub-menu">Correctivo</a>
+                </div>
+            </div>
+
+            <a href="./Combustible.html" class="item-menu"><i class="fa-solid fa-gas-pump"></i> Combustible</a>
+            <a href="./Accidentes.html" class="item-menu"><i class="fa-solid fa-car-burst"></i> Accidentes</a>
+            <a href="./ReporteConductor.html" class="item-menu"><i class="fa-regular fa-file-lines"></i> Reporte conductor</a>
+            <a href="./Trabajadores.html" class="item-menu"><i class="fa-solid fa-helmet-safety"></i> Trabajadores</a>
+        </div>
+
+        <a href="./PerfilUsuario.html" class="perfil-usuario text-decoration-none">
+            <i class="fa-solid fa-circle-user fs-2 me-3"></i>
+            <span class="nombre-usuario">Nombre de Usuario</span>
+        </a>
+    </aside>
+
+    <main class="main-content" id="contenido-principal">
+        <header class="cabecera-pagina-moderna d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3">
+            <div>
+                <h1 class="titulo-principal m-0">Nuevo Vehículo</h1>
+                <p class="subtitulo-principal m-0 mt-1">Ingrese las especificaciones técnicas y operativas completas de la nueva unidad</p>
+            </div>
+            <div class="d-flex gap-2 accion-cabecera-contenedor">
+                <a href="./Vehiculos.html" class="btn btn-light fw-semibold px-4 py-2 rounded-3 text-decoration-none" style="color: #4B5563; font-size: 14px;">
+                    <i class="fa-solid fa-arrow-left me-2"></i> Volver a Vehículos
+                </a>
+            </div>
+        </header>
+
+        <form id="formulario-nuevo-vehiculo" class="needs-validation" novalidate>
+            <div class="position-relative">
+                <div class="capa-exito d-none d-flex flex-column align-items-center justify-content-center position-absolute top-0 start-0 w-100 h-100 bg-white rounded-4 shadow-sm" id="capa-exito" style="z-index: 10; min-height: 450px;">
+                    <div class="tarjeta-exito-diseno text-center p-5">
+                        <div class="icono-exito-circulo text-success mb-3" style="font-size: 3.5rem;"><i class="fa-solid fa-circle-check"></i></div>
+                        <h3 class="texto-exito-titulo fw-bold text-dark mb-2">Vehículo Registrado Exitosamente</h3>
+                        <p class="text-muted mb-4" style="font-size: 14px;">La unidad se ha incorporado correctamente al control de la base de datos operacional.</p>
+                        <button type="button" class="btn btn-dark fw-semibold px-5 py-2.5 rounded-3" id="btn-aceptar-exito" style="font-size: 14px;">Aceptar</button>
+                    </div>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-lg-7">
+                        <article class="tarjeta-interna-formulario p-4 rounded-4 bg-light border border-light-subtle shadow-sm">
+                            <h3 class="titulo-seccion-interna fw-bold text-dark mb-4 fs-6"><i class="fa-solid fa-file-invoice text-primary me-2"></i>Ficha Técnica Operativa</h3>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-semibold text-secondary mb-1">Matrícula</label>
+                                    <input type="text" class="form-control entrada-premium-control" id="txt-matricula" placeholder="Ej: ABC-123" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-semibold text-secondary mb-1">Marca</label>
+                                    <input type="text" class="form-control entrada-premium-control" id="txt-marca" placeholder="Ej: Toyota" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-semibold text-secondary mb-1">Modelo</label>
+                                    <input type="text" class="form-control entrada-premium-control" id="txt-modelo" placeholder="Ej: Hilux" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-semibold text-secondary mb-1">Año</label>
+                                    <input type="number" class="form-control entrada-premium-control" id="num-anio" placeholder="Ej: 2022" min="1990" max="2027" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-semibold text-secondary mb-1">Kilometraje Inicial</label>
+                                    <input type="number" class="form-control entrada-premium-control" id="num-kilometraje" placeholder="Ej: 45000" min="0" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-semibold text-secondary mb-1">Número VIN (Chasis)</label>
+                                    <input type="text" class="form-control entrada-premium-control font-monospace" id="txt-vin" placeholder="17 caracteres alfanuméricos" minlength="11" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-semibold text-secondary mb-1">Estado del vehículo</label>
+                                    <select class="form-select entrada-premium-control" id="sel-estado" required>
+                                        <option value="Operativo" selected>Operativo</option>
+                                        <option value="Mantenimiento">Mantenimiento</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-semibold text-secondary mb-1">Conductor asignado</label>
+                                    <select class="form-select entrada-premium-control" id="sel-conductor" required>
+                                        <option value="" disabled selected>Asigne un operador</option>
+                                        <option value="Juan Pérez">Juan Pérez</option>
+                                        <option value="Carlos López">Carlos López</option>
+                                        <option value="Rudy Pineda">Rudy Pineda</option>
+                                        <option value="Miguel Gómez">Miguel Gómez</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    
+                    <div class="col-lg-5">
+                        <article class="tarjeta-interna-formulario p-4 rounded-4 bg-white border h-100 d-flex flex-column shadow-sm">
+                            <h3 class="titulo-seccion-interna fw-bold text-dark mb-3 fs-6"><i class="fa-solid fa-camera text-primary me-2"></i>Galería Inspección Visual</h3>
+                            
+                            <div class="zona-carga-principal border rounded-4 text-center p-4 d-flex flex-column align-items-center justify-content-center flex-grow-1 mb-3 bg-light">
+                                <i class="fa-solid fa-cloud-arrow-up fs-2 text-primary mb-2"></i>
+                                <span class="d-block fw-semibold text-dark small">Subir Fotografía Principal</span>
+                                <span class="text-muted d-block" style="font-size: 11px;">Formatos JPG o PNG hasta 5MB</span>
+                                <input type="file" class="d-none" id="input-archivo-foto" accept="image/*">
+                                <button type="button" class="btn btn-outline-primary btn-sm fw-medium mt-3 px-3 rounded-3" id="btn-examinar">Examinar dispositivo</button>
+                            </div>
+
+                            <div class="cuadricula-imagenes-inspeccion">
+                                <div class="miniatura-inspeccion-caja">
+                                    <div class="caja-icono-camara"><i class="fa-solid fa-camera"></i></div>
+                                    <span class="subtitulo-imagen-inspeccion">Frontal</span>
+                                </div>
+                                <div class="miniatura-inspeccion-caja">
+                                    <div class="caja-icono-camara"><i class="fa-solid fa-camera"></i></div>
+                                    <span class="subtitulo-imagen-inspeccion">Trasera</span>
+                                </div>
+                                <div class="miniatura-inspeccion-caja">
+                                    <div class="caja-icono-camara"><i class="fa-solid fa-camera"></i></div>
+                                    <span class="subtitulo-imagen-inspeccion">Izquierda</span>
+                                </div>
+                                <div class="miniatura-inspeccion-caja">
+                                    <div class="caja-icono-camara"><i class="fa-solid fa-camera"></i></div>
+                                    <span class="subtitulo-imagen-inspeccion">Derecha</span>
+                                </div>
+                                <div class="miniatura-inspeccion-caja">
+                                    <div class="caja-icono-camara"><i class="fa-solid fa-camera"></i></div>
+                                    <span class="subtitulo-imagen-inspeccion">Interior</span>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-end gap-2 mt-4">
+                    <a href="./Vehiculos.html" class="btn btn-light fw-semibold px-4 py-2 rounded-3" style="color: #4B5563; font-size: 14px;">Cancelar</a>
+                    <button type="submit" class="btn btn-primary text-white fw-semibold px-4 py-2 rounded-3" id="btn-enviar-registro" style="font-size: 14px;">Registrar Vehículo</button>
+                </div>
+            </div>
+        </form>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/services/nuevoVehiculo.js"></script>
+    <script src="../js/controllers/nuevoVehiculo.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="../js/globalInteractions.js"></script>
+</body>
+</html>

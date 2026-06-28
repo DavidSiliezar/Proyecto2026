@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fleet Manager - Detalles del Reporte</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/stylesReporteConductor.css">
+    <link rel="stylesheet" href="../styles/stylesVerReporte.css">
+</head>
+<body>
+
+    <header class="barra-superior">
+        <img src="../img/group3.svg" alt="Fleet Manager Logo" class="logo-principal">
+        <button class="interruptor-movil" id="btn-menu-movil" aria-label="Abrir menú">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </header>
+
+            <aside class="barra-lateral" id="barra-lateral">
+        <div class="interruptor-menu" id="btn-escritorio" style="cursor: pointer;">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        
+        <div class="mt-4 flex-grow-1 overflow-y-auto" style="overflow-x: hidden;">
+            <a href="./Dashboard.html" class="item-menu"><i class="fa-solid fa-house"></i> Inicio</a>
+            <a href="./Vehiculos.html" class="item-menu"><i class="fa-solid fa-car-side"></i> Vehículos</a>
+            
+            <div class="contenedor-submenu">
+                <a href="./Mantenimiento.html" class="item-menu" aria-expanded="false" >
+                    <i class="fa-solid fa-screwdriver-wrench"></i> Mantenimiento 
+                    <i class="fa-solid fa-chevron-down ms-auto icono-desplegable"></i>
+                </a>
+                <div class="collapse" id="submenu-mantenimiento">
+                    <a href="./MantPreventivo.html" class="item-sub-menu">Preventivo</a>
+                    <a href="./MantenimientoCorrectivo.html" class="item-sub-menu">Correctivo</a>
+                </div>
+            </div>
+
+            <a href="./Combustible.html" class="item-menu"><i class="fa-solid fa-gas-pump"></i> Combustible</a>
+            <a href="./Accidentes.html" class="item-menu"><i class="fa-solid fa-car-burst"></i> Accidentes</a>
+            <a href="./ReporteConductor.html" class="item-menu"><i class="fa-regular fa-file-lines"></i> Reporte conductor</a>
+            <a href="./Trabajadores.html" class="item-menu"><i class="fa-solid fa-helmet-safety"></i> Trabajadores</a>
+        </div>
+
+        <a href="./PerfilUsuario.html" class="perfil-usuario text-decoration-none">
+            <i class="fa-solid fa-circle-user fs-2 me-3"></i>
+            <span class="nombre-usuario">Nombre de Usuario</span>
+        </a>
+    </aside>
+
+    <main class="main-content" id="contenido-principal">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <header class="cabecera-pagina m-0">
+                <h1 class="titulo-pagina mb-1" id="titulo-reporte">Detalle de Reporte</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb m-0 fs-6">
+                        <li class="breadcrumb-item"><a href="./ReporteConductor.html" class="text-decoration-none">Reportes</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Detalle</li>
+                    </ol>
+                </nav>
+            </header>
+            <button class="btn btn-primary px-4 shadow-sm rounded-pill d-flex align-items-center gap-2" id="btn-marcar-atendido" onclick="marcarAtendido()">
+                <i class="fa-solid fa-check"></i> Marcar como Atendido
+            </button>
+        </div>
+
+        <div class="row g-4 mt-2 pb-4">
+            <div class="col-xl-8">
+                <!-- Tarjeta Principal de Detalles -->
+                <div class="tarjeta-moderna p-0 mb-4 h-100 d-flex flex-column">
+                    <div class="cabecera-tarjeta p-4 d-flex justify-content-between align-items-start border-bottom">
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="icono-circular bg-primary bg-opacity-10 text-primary">
+                                <i class="fa-solid fa-file-invoice fs-4"></i>
+                            </div>
+                            <div>
+                                <h4 class="fw-bold mb-1 text-dark" id="info-id">Reporte #---</h4>
+                                <p class="text-muted mb-0" id="info-fecha"><i class="fa-regular fa-calendar me-1"></i> Cargando...</p>
+                            </div>
+                        </div>
+                        <span class="badge px-3 py-2 rounded-pill fs-6 shadow-sm" id="info-estado">Cargando...</span>
+                    </div>
+                    <div class="cuerpo-tarjeta p-4 flex-grow-1">
+                        <h5 class="fw-bold mb-3 text-dark">Descripción del incidente</h5>
+                        <p class="text-secondary fs-6 lh-lg mb-4 p-3 bg-light rounded-3 border" id="info-descripcion">
+                            Cargando descripción...
+                        </p>
+                        
+                        <div class="row g-4 mb-2">
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-center gap-3 p-3 border rounded-3 bg-white h-100">
+                                    <div class="icono-cuadrado bg-info bg-opacity-10 text-info rounded"><i class="fa-solid fa-location-dot"></i></div>
+                                    <div>
+                                        <p class="text-muted mb-0 fs-7 fw-semibold text-uppercase" style="font-size: 11px;">Ubicación</p>
+                                        <p class="fw-bold text-dark mb-0 fs-6 text-truncate" id="info-ubicacion">Cargando...</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-center gap-3 p-3 border rounded-3 bg-white h-100">
+                                    <div class="icono-cuadrado bg-warning bg-opacity-10 text-warning rounded"><i class="fa-solid fa-car"></i></div>
+                                    <div>
+                                        <p class="text-muted mb-0 fs-7 fw-semibold text-uppercase" style="font-size: 11px;">Vehículo Involucrado</p>
+                                        <p class="fw-bold text-dark mb-0 fs-6">Toyota Hilux (P-123456)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-4 d-flex flex-column gap-4">
+                <!-- Tarjeta del Conductor -->
+                <div class="tarjeta-moderna p-4 text-center">
+                    <img src="https://ui-avatars.com/api/?name=Conductor&background=0D8ABC&color=fff" alt="Conductor" class="rounded-circle shadow-sm mb-3" style="width: 100px; height: 100px; border: 4px solid #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                    <h5 class="fw-bold mb-1 text-dark">Carlos Rodríguez</h5>
+                    <p class="text-muted mb-3 fs-6">Conductor Asignado</p>
+                    <div class="d-flex justify-content-center gap-2">
+                        <button class="btn btn-outline-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;"><i class="fa-solid fa-phone"></i></button>
+                        <button class="btn btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;"><i class="fa-solid fa-envelope"></i></button>
+                    </div>
+                </div>
+
+                <!-- Tarjeta de Evidencia -->
+                <div class="tarjeta-moderna p-0 overflow-hidden flex-grow-1 d-flex flex-column">
+                    <div class="p-3 border-bottom bg-light">
+                        <h6 class="fw-bold mb-0 text-dark"><i class="fa-solid fa-camera me-2"></i> Evidencia Fotográfica</h6>
+                    </div>
+                    <img src="https://placehold.co/400x300/e2e8f0/475569?text=Cargando..." alt="Evidencia" id="info-imagen" class="w-100 flex-grow-1 object-fit-cover" style="min-height: 200px;">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- SweetAlert2 se inyectará globalmente luego -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../js/Services/repConductor.js"></script>
+    <script src="../js/Controllers/verReporteController.js"></script>
+<script src="../js/globalInteractions.js"></script>
+</body>
+</html>

@@ -42,22 +42,29 @@ async function renderizarReportes() {
     let htmlContenido = '';
 
     reportes.forEach(reporte => {
-        const claseEstado = reporte.estado === 'revision' ? 'estado-revision' : 'estado-atendido';
+        const claseEstado = reporte.estado === 'revision' ? 'bg-warning text-dark' : 'bg-success text-white';
         const textoEstado = reporte.estado === 'revision' ? 'En revisión' : 'Atendido';
 
         htmlContenido += `
-            <article class="tarjeta-reporte">
-                <img src="${reporte.img}" alt="Fotografía del reporte" class="imagen-reporte" onerror="this.src='../img/placeholder.jpg'">
-                <div class="detalles-reporte">
-                    <span class="insignia-estado ${claseEstado}">${textoEstado}</span>
-                    <h3 class="numero-reporte">${reporte.id}</h3>
-                    <p class="fecha-hora"><i class="fa-regular fa-calendar"></i> ${reporte.fecha}</p>
-                    <p class="ubicacion"><i class="fa-solid fa-location-dot"></i> ${reporte.ubicacion}</p>
+            <a href="./VerReporteConductor.html?id=${reporte.id}" class="tarjeta-reporte text-decoration-none">
+                <div class="imagen-contenedor position-relative">
+                    <img src="${reporte.img}" alt="Fotografía del reporte" class="imagen-reporte" onerror="this.src='https://placehold.co/400x300/e2e8f0/475569?text=Sin+Foto'">
+                    <span class="insignia-estado badge ${claseEstado} position-absolute top-0 end-0 m-3 shadow-sm px-3 py-2 rounded-pill">${textoEstado}</span>
                 </div>
-                <div class="icono-flecha">
-                    <i class="fa-solid fa-chevron-right"></i>
+                <div class="detalles-reporte p-4 d-flex flex-column flex-grow-1">
+                    <div>
+                        <h3 class="numero-reporte fw-bold text-dark mb-3 fs-5"><i class="fa-solid fa-file-invoice text-primary me-2"></i>Reporte #${reporte.id}</h3>
+                        <p class="fecha-hora text-secondary mb-2 fs-6"><i class="fa-regular fa-calendar me-2" style="width: 16px;"></i>${reporte.fecha}</p>
+                        <p class="ubicacion text-secondary mb-0 fs-6 text-truncate"><i class="fa-solid fa-location-dot me-2" style="width: 16px;"></i>${reporte.ubicacion}</p>
+                    </div>
+                    <div class="mt-4 pt-3 border-top d-flex justify-content-between align-items-center">
+                        <span class="texto-accion text-primary fw-semibold" style="font-size: 14px;">Ver detalles del reporte</span>
+                        <div class="icono-flecha bg-primary bg-opacity-10 text-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 32px; height: 32px;">
+                            <i class="fa-solid fa-chevron-right fs-6"></i>
+                        </div>
+                    </div>
                 </div>
-            </article>
+            </a>
         `;
     });
 

@@ -48,9 +48,15 @@ function inicializarEventosVehiculos() {
         });
     }
 
-    if (btnEnviarRegistro) {
-        btnEnviarRegistro.addEventListener('click', async (e) => {
+    if (formularioNuevoVehiculo) {
+        formularioNuevoVehiculo.addEventListener('submit', async (e) => {
             e.preventDefault(); 
+
+            if (!formularioNuevoVehiculo.checkValidity()) {
+                e.stopPropagation();
+                formularioNuevoVehiculo.classList.add('was-validated');
+                return;
+            }
 
             try {
                 btnEnviarRegistro.disabled = true;
@@ -63,7 +69,7 @@ function inicializarEventosVehiculos() {
                 alert("Ocurrió un error al registrar. Inténtelo de nuevo.");
             } finally {
                 btnEnviarRegistro.disabled = false;
-                btnEnviarRegistro.textContent = "Registrar";
+                btnEnviarRegistro.textContent = "Registrar Vehículo";
             }
         });
     }
@@ -72,7 +78,10 @@ function inicializarEventosVehiculos() {
         btnAceptarExito.addEventListener('click', () => {
             if (capaExito) capaExito.classList.add('d-none');
             modalVehiculo.hide();
-            if (formularioNuevoVehiculo) formularioNuevoVehiculo.reset();
+            if (formularioNuevoVehiculo) {
+                formularioNuevoVehiculo.reset();
+                formularioNuevoVehiculo.classList.remove('was-validated');
+            }
         });
     }
 }
